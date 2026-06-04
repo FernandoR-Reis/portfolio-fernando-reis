@@ -54,6 +54,13 @@ nav{
   transition:color .2s;
 }
 .nav-links a:hover{color:var(--cyan)}
+.nav-contacts{display:flex;gap:.5rem;align-items:center}
+.nav-contacts .btn{
+  padding:.45rem .75rem;
+  font-size:.78rem;
+  border-radius:6px;
+  white-space:nowrap;
+}
 
 /* HERO */
 .hero{
@@ -400,6 +407,7 @@ section{padding:5rem 3rem}
 }
 .contact-label{font-size:.75rem;color:var(--gray);margin-bottom:.2rem}
 .contact-value{font-weight:500;font-size:.95rem}
+.whatsapp-logo{width:22px;height:22px;display:block;fill:currentColor}
 
 /* FOOTER */
 footer{
@@ -418,6 +426,8 @@ footer{
 @media(max-width:900px){
   nav{padding:.75rem 1.5rem}
   .nav-links{display:none}
+  .nav-contacts{gap:.4rem;flex-wrap:wrap;justify-content:flex-end}
+  .nav-contacts .btn{font-size:.72rem;padding:.4rem .6rem}
   .hero{padding:7rem 1.5rem 4rem}
   .stats{margin:0 1.5rem}
   section{padding:4rem 1.5rem}
@@ -439,7 +449,11 @@ footer{
     <li><a href="#reisflow">Reis Flow</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a href="https://github.com/FernandoR-Reis" target="_blank" class="btn btn-secondary" style="padding:.5rem 1.2rem;font-size:.82rem">GitHub ↗</a>
+  <div class="nav-contacts">
+    <a href="mailto:fernandoreisdj9@gmail.com" class="btn btn-secondary">E-mail</a>
+    <a href="tel:+5519999986024" class="btn btn-secondary">19 99998-6024</a>
+    <a href="https://wa.me/5519999986024" target="_blank" class="btn btn-secondary">WhatsApp</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -722,21 +736,21 @@ footer{
   <h2 class="section-title">Vamos conversar?</h2>
   <p class="section-sub">Aberto a oportunidades em Dados, BI, Business Analysis e Gestão de Projetos.</p>
   <div class="contact-grid">
-    <a href="https://www.linkedin.com/in/fernando-reis-a085521b4/" target="_blank" class="contact-card">
-      <div class="contact-icon" style="background:rgba(10,102,194,.15);color:#0a66c2;font-size:1.4rem">in</div>
-      <div><div class="contact-label">LinkedIn</div><div class="contact-value">fernando-reis-a085521b4</div></div>
-    </a>
-    <a href="https://github.com/FernandoR-Reis" target="_blank" class="contact-card">
-      <div class="contact-icon" style="background:rgba(255,255,255,.05);font-size:1.3rem">🐙</div>
-      <div><div class="contact-label">GitHub</div><div class="contact-value">FernandoR-Reis</div></div>
-    </a>
     <a href="mailto:fernandoreisdj9@gmail.com" class="contact-card">
       <div class="contact-icon" style="background:rgba(234,67,53,.1);color:#ea4335;font-size:1.2rem">✉️</div>
       <div><div class="contact-label">E-mail</div><div class="contact-value">fernandoreisdj9@gmail.com</div></div>
     </a>
-    <a href="https://wa.me/5511999999999" target="_blank" class="contact-card">
-      <div class="contact-icon" style="background:rgba(37,211,102,.1);color:#25d366;font-size:1.2rem">💬</div>
-      <div><div class="contact-label">WhatsApp</div><div class="contact-value">São Paulo, SP</div></div>
+    <a href="tel:+5519999986024" class="contact-card">
+      <div class="contact-icon" style="background:rgba(42,180,224,.12);color:var(--cyan);font-size:1.2rem">📞</div>
+      <div><div class="contact-label">Celular</div><div class="contact-value">19 99998-6024</div></div>
+    </a>
+    <a href="https://wa.me/5519999986024" target="_blank" class="contact-card">
+      <div class="contact-icon" style="background:rgba(37,211,102,.1);color:#25d366">
+        <svg class="whatsapp-logo" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.52 3.48A11.88 11.88 0 0 0 12.03 0C5.43 0 .05 5.38.05 11.98c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.89 11.89 0 0 0 5.82 1.48h.01c6.6 0 11.98-5.38 11.98-11.98 0-3.2-1.25-6.2-3.49-8.4ZM12.03 21.8h-.01a9.8 9.8 0 0 1-4.99-1.36l-.36-.21-3.68.96.98-3.59-.24-.37a9.77 9.77 0 0 1-1.5-5.24c0-5.4 4.4-9.8 9.8-9.8 2.62 0 5.09 1.02 6.95 2.88a9.75 9.75 0 0 1 2.86 6.92c0 5.4-4.4 9.8-9.8 9.8Zm5.38-7.34c-.29-.14-1.73-.85-2-.95-.27-.1-.47-.14-.66.14-.2.29-.76.95-.94 1.15-.17.2-.34.22-.63.07-.29-.14-1.2-.44-2.28-1.4-.84-.74-1.4-1.66-1.56-1.95-.17-.29-.02-.45.12-.59.12-.12.29-.31.43-.46.14-.15.19-.25.29-.42.1-.17.05-.32-.03-.46-.07-.14-.66-1.6-.9-2.2-.24-.57-.48-.49-.66-.5l-.56-.01c-.2 0-.5.07-.77.36-.27.29-1.02.99-1.02 2.41s1.04 2.8 1.18 2.99c.14.2 2.03 3.1 4.91 4.35.69.3 1.23.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.73-.71 1.98-1.39.24-.68.24-1.27.17-1.39-.08-.12-.27-.19-.56-.33Z"/>
+        </svg>
+      </div>
+      <div><div class="contact-label">WhatsApp</div><div class="contact-value">19 99998-6024</div></div>
     </a>
   </div>
 </section>

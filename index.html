@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernando Reis — Dados · BI · Gestão de Projetos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628;
+  --navy2:#0f2044;
+  --petrol:#0e4d6e;
+  --petrol2:#1a6b96;
+  --cyan:#2ab4e0;
+  --cyan2:#5ecfee;
+  --white:#f5f8fc;
+  --gray:#b0bec5;
+  --gray2:#78909c;
+  --card:#101e35;
+  --card2:#162540;
+  --border:rgba(42,180,224,0.15);
+  --border2:rgba(42,180,224,0.3);
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 3rem;
+  background:rgba(10,22,40,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:1.2rem;
+  color:var(--cyan);letter-spacing:-.5px;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:var(--gray);text-decoration:none;
+  font-size:.88rem;font-weight:500;letter-spacing:.3px;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--cyan)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:8rem 3rem 5rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;
+  top:-200px;right:-300px;
+  width:700px;height:700px;
+  background:radial-gradient(circle, rgba(14,77,110,.5) 0%, transparent 65%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;
+  bottom:-100px;left:-200px;
+  width:500px;height:500px;
+  background:radial-gradient(circle, rgba(42,180,224,.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{max-width:780px;position:relative;z-index:1}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid var(--border2);
+  border-radius:100px;padding:.35rem 1rem;
+  font-size:.8rem;color:var(--cyan2);letter-spacing:.5px;
+  margin-bottom:1.5rem;
+  animation:fadeUp .8s ease both;
+}
+.hero-tag::before{
+  content:'';display:block;width:6px;height:6px;
+  background:var(--cyan);border-radius:50%;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:800;line-height:1.1;
+  letter-spacing:-1.5px;
+  margin-bottom:1.5rem;
+  animation:fadeUp .8s .1s ease both;
+}
+h1 span{color:var(--cyan)}
+.hero-sub{
+  font-size:1.1rem;color:var(--gray);font-weight:300;
+  max-width:560px;margin-bottom:2.5rem;
+  animation:fadeUp .8s .2s ease both;
+}
+.hero-btns{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp .8s .3s ease both;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.75rem 1.75rem;border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-weight:500;
+  font-size:.9rem;text-decoration:none;
+  transition:all .2s;cursor:pointer;border:none;
+}
+.btn-primary{
+  background:var(--cyan);color:var(--navy);
+}
+.btn-primary:hover{background:var(--cyan2);transform:translateY(-2px)}
+.btn-secondary{
+  background:transparent;color:var(--white);
+  border:1px solid var(--border2);
+}
+.btn-secondary:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+
+/* STATS ROW */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;margin:0 3rem;
+  animation:fadeUp .8s .5s ease both;
+}
+.stat{
+  background:var(--card);
+  padding:1.5rem 1.25rem;text-align:center;
+}
+.stat-num{
+  font-family:'Syne',sans-serif;
+  font-size:2rem;font-weight:800;
+  color:var(--cyan);display:block;
+}
+.stat-label{font-size:.8rem;color:var(--gray);margin-top:.2rem}
+
+/* SECTION COMMON */
+section{padding:5rem 3rem}
+.section-label{
+  font-size:.75rem;color:var(--cyan);
+  letter-spacing:2px;text-transform:uppercase;
+  font-weight:500;margin-bottom:.75rem;
+}
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:800;letter-spacing:-1px;
+  margin-bottom:1rem;line-height:1.15;
+}
+.section-sub{color:var(--gray);font-weight:300;max-width:520px;margin-bottom:3rem}
+
+/* SOBRE */
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.sobre-text p{color:var(--gray);margin-bottom:1.2rem;font-weight:300;line-height:1.85}
+.sobre-text p strong{color:var(--white);font-weight:500}
+.sobre-skills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+.skill-tag{
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:6px;padding:.4rem .9rem;
+  font-size:.8rem;color:var(--cyan2);font-weight:500;
+}
+
+/* COMPETÊNCIAS DASHBOARD */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.comp-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;
+  position:relative;overflow:hidden;
+  transition:transform .75s cubic-bezier(.22,1,.36,1),opacity .75s ease;
+}
+.comp-grid.is-armed .comp-card{opacity:0}
+.comp-grid.is-armed .comp-card:nth-child(odd){transform:translateX(-70px)}
+.comp-grid.is-armed .comp-card:nth-child(even){transform:translateX(70px)}
+.comp-grid.is-armed .comp-card.is-visible{opacity:1;transform:translateX(0)}
+.comp-grid.is-armed .comp-card > *{
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .45s ease,transform .45s ease;
+}
+.comp-grid.is-armed .comp-card.is-visible > *{opacity:1;transform:translateY(0)}
+.comp-grid.is-armed .comp-card.is-visible > *:nth-child(1){transition-delay:.08s}
+.comp-grid.is-armed .comp-card.is-visible > *:nth-child(2){transition-delay:.14s}
+.comp-grid.is-armed .comp-card.is-visible > *:nth-child(3){transition-delay:.2s}
+.comp-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.comp-card.dados::before{background:var(--cyan)}
+.comp-card.gestao::before{background:#4dc8a0}
+.comp-card.tech::before{background:#a78bfa}
+.comp-icon{
+  font-size:1.5rem;margin-bottom:1rem;
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:8px;
+}
+.comp-card.dados .comp-icon{background:rgba(42,180,224,.1);color:var(--cyan)}
+.comp-card.gestao .comp-icon{background:rgba(77,200,160,.1);color:#4dc8a0}
+.comp-card.tech .comp-icon{background:rgba(167,139,250,.1);color:#a78bfa}
+.comp-title{
+  font-family:'Syne',sans-serif;font-size:1rem;
+  font-weight:700;margin-bottom:1rem;
+}
+.comp-items{display:flex;flex-direction:column;gap:.6rem}
+.comp-item{display:flex;align-items:center;justify-content:space-between}
+.comp-name{font-size:.85rem;color:var(--gray)}
+.comp-bar-wrap{
+  flex:1;margin:0 .75rem;
+  height:4px;background:rgba(255,255,255,.08);
+  border-radius:4px;overflow:hidden;
+}
+.comp-bar{
+  height:100%;border-radius:4px;
+  transition:width 1.2s ease;
+}
+.comp-card.dados .comp-bar{background:var(--cyan)}
+.comp-card.gestao .comp-bar{background:#4dc8a0}
+.comp-card.tech .comp-bar{background:#a78bfa}
+.comp-pct{font-size:.75rem;color:var(--gray2);min-width:28px;text-align:right}
+
+/* PROJETOS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;
+  display:flex;flex-direction:column;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.proj-card:hover{
+  border-color:var(--border2);
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.3);
+}
+.proj-card.destaque{
+  border-color:rgba(42,180,224,.35);
+  background:linear-gradient(135deg,var(--card) 0%,rgba(14,77,110,.3) 100%);
+}
+.proj-badge{
+  position:absolute;top:1rem;right:1rem;
+  font-size:.7rem;font-weight:600;letter-spacing:.5px;
+  padding:.3rem .7rem;border-radius:100px;
+}
+.badge-destaque{background:rgba(42,180,224,.15);color:var(--cyan)}
+.badge-gestao{background:rgba(77,200,160,.1);color:#4dc8a0}
+.badge-front{background:rgba(167,139,250,.1);color:#a78bfa}
+.proj-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;margin-bottom:1rem;
+}
+.proj-title{
+  font-family:'Syne',sans-serif;
+  font-size:1.05rem;font-weight:700;
+  margin-bottom:.5rem;
+}
+.proj-desc{
+  font-size:.88rem;color:var(--gray);
+  font-weight:300;line-height:1.65;
+  flex:1;margin-bottom:1.25rem;
+}
+.proj-techs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+.tech-pill{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:4px;padding:.2rem .6rem;
+  font-size:.73rem;color:var(--gray2);
+}
+.proj-links{display:flex;gap:.75rem}
+.proj-link{
+  font-size:.82rem;color:var(--cyan2);
+  text-decoration:none;font-weight:500;
+  display:inline-flex;align-items:center;gap:.3rem;
+}
+.proj-link:hover{color:var(--white)}
+.proj-link::after{content:'↗';font-size:.75rem}
+
+/* DESTAQUE REIS FLOW */
+.reisflow{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;padding:2.5rem;
+  position:relative;overflow:hidden;
+}
+.reisflow::before{
+  content:'REIS FLOW';
+  position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+  font-family:'Syne',sans-serif;font-size:7rem;font-weight:800;
+  color:rgba(42,180,224,.04);letter-spacing:-4px;
+  pointer-events:none;white-space:nowrap;
+}
+.rf-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.rf-title{
+  font-family:'Syne',sans-serif;
+  font-size:2.2rem;font-weight:800;
+  color:var(--cyan);letter-spacing:-1px;
+  margin-bottom:.5rem;
+}
+.rf-sub{color:var(--gray);font-weight:300;margin-bottom:2rem}
+.rf-features{display:flex;flex-direction:column;gap:.75rem}
+.rf-feature{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.75rem 1rem;
+  background:rgba(42,180,224,.05);
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-size:.88rem;color:var(--gray);
+}
+.rf-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;flex-shrink:0}
+.rf-roadmap{margin-top:2rem}
+.rf-roadmap h4{
+  font-family:'Syne',sans-serif;font-size:.85rem;
+  font-weight:700;color:var(--cyan2);
+  letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.roadmap-items{display:flex;flex-direction:column;gap:.5rem}
+.roadmap-item{
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.85rem;
+}
+.roadmap-dot{
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;
+}
+.done{background:var(--cyan)}
+.in-progress{background:#4dc8a0}
+.planned{background:rgba(255,255,255,.2)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:1px;background:var(--border2);
+}
+.timeline.is-armed::before{
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform 1.2s ease;
+}
+.timeline.is-armed.is-visible::before{transform:scaleY(1)}
+.tl-item{
+  position:relative;margin-bottom:2.5rem;padding-left:2rem;
+}
+.timeline.is-armed .tl-item{
+  opacity:0;
+  transform:translateX(26px);
+  transition:opacity .55s ease,transform .55s ease;
+}
+.timeline.is-armed .tl-item.is-visible{opacity:1;transform:translateX(0)}
+.timeline.is-armed .tl-item > *{
+  opacity:0;
+  transform:translateY(9px);
+  transition:opacity .45s ease,transform .45s ease;
+}
+.timeline.is-armed .tl-item.is-visible > *{opacity:1;transform:translateY(0)}
+.timeline.is-armed .tl-item.is-visible > *:nth-child(1){transition-delay:.08s}
+.timeline.is-armed .tl-item.is-visible > *:nth-child(2){transition-delay:.14s}
+.timeline.is-armed .tl-item.is-visible > *:nth-child(3){transition-delay:.2s}
+.tl-item::before{
+  content:'';position:absolute;
+  left:-2.375rem;top:.35rem;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--navy);
+  border:2px solid var(--cyan);
+}
+.tl-year{
+  font-size:.78rem;color:var(--cyan);
+  letter-spacing:1px;font-weight:600;
+  margin-bottom:.3rem;
+}
+.tl-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.05rem;margin-bottom:.4rem;
+}
+.tl-desc{font-size:.88rem;color:var(--gray);font-weight:300;line-height:1.65}
+
+/* CONTATO */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.contact-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;
+  display:flex;align-items:center;gap:1rem;
+  text-decoration:none;color:var(--white);
+  transition:all .25s;
+}
+.contact-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.contact-icon{
+  width:46px;height:46px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+}
+.contact-label{font-size:.75rem;color:var(--gray);margin-bottom:.2rem}
+.contact-value{font-weight:500;font-size:.95rem}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:2rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.82rem;color:var(--gray2);
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:.75rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:7rem 1.5rem 4rem}
+  .stats{margin:0 1.5rem}
+  section{padding:4rem 1.5rem}
+  .sobre-grid,.rf-grid,.comp-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">FR</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#competencias">Competências</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#reisflow">Reis Flow</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://github.com/FernandoR-Reis" target="_blank" class="btn btn-secondary" style="padding:.5rem 1.2rem;font-size:.82rem">GitHub ↗</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Disponível para oportunidades</div>
+    <h1>Transformando processos em resultados<br><span>através de dados, automação<br>e gestão.</span></h1>
+    <p class="hero-sub">Projetos voltados para análise de dados, dashboards, automação de processos e desenvolvimento de soluções para negócios.</p>
+    <div class="hero-btns">
+      <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
+      <a href="https://github.com/FernandoR-Reis" target="_blank" class="btn btn-secondary">GitHub</a>
+      <a href="#contato" class="btn btn-secondary">Contato</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><span class="stat-num" data-target="11">0</span><div class="stat-label">Repositórios</div></div>
+  <div class="stat"><span class="stat-num" data-target="3">0</span><div class="stat-label">Sistemas criados</div></div>
+  <div class="stat"><span class="stat-num" data-target="5">0</span><div class="stat-label">Empresas impactadas</div></div>
+  <div class="stat"><span class="stat-num" data-target="200">0</span><div class="stat-label">Horas de dev</div></div>
+  <div class="stat"><span class="stat-num" data-target="12">0</span><div class="stat-label">Processos documentados</div></div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-label">Sobre mim</div>
+  <h2 class="section-title">Negócio + Dados + Gestão</h2>
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <p>Profissional com experiência em <strong>gestão operacional</strong>, processos, atendimento ao cliente, controle financeiro e implantação de tecnologia em empresas dos segmentos de bares, restaurantes, serviços e manutenção.</p>
+      <p>Atualmente atua na criação de <strong>sistemas, dashboards, automações</strong> e ferramentas de gestão para aumentar produtividade, reduzir falhas operacionais e melhorar a tomada de decisão.</p>
+      <p>Possui perfil <strong>analítico, visão estratégica</strong>, facilidade para identificar gargalos e transformar problemas de negócio em soluções práticas — unindo vivência operacional real com desenvolvimento de soluções digitais.</p>
+      <p>Busca oportunidades como <strong>Analista de Dados, BI Analyst, Business Analyst, PMO ou Gerente de Projetos Jr.</strong></p>
+    </div>
+    <div>
+      <p style="font-size:.8rem;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:1rem">Habilidades</p>
+      <div class="sobre-skills">
+        <span class="skill-tag">Resolução de Problemas</span>
+        <span class="skill-tag">Análise de Dados</span>
+        <span class="skill-tag">Gestão de Processos</span>
+        <span class="skill-tag">Levantamento de Requisitos</span>
+        <span class="skill-tag">Organização de Projetos</span>
+        <span class="skill-tag">Comunicação entre Áreas</span>
+        <span class="skill-tag">Automação</span>
+        <span class="skill-tag">Pensamento Estratégico</span>
+        <span class="skill-tag">Scrum / Kanban</span>
+        <span class="skill-tag">Controle Financeiro</span>
+        <span class="skill-tag">Gestão de Equipes</span>
+        <span class="skill-tag">Melhoria Contínua</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETÊNCIAS -->
+<section id="competencias" style="padding-top:0">
+  <div class="section-label">Dashboard de competências</div>
+  <h2 class="section-title">Conhecimentos técnicos</h2>
+  <p class="section-sub">Visão consolidada das competências desenvolvidas ao longo da jornada de transição.</p>
+
+  <div class="comp-grid">
+    <!-- Dados -->
+    <div class="comp-card dados">
+      <div class="comp-icon">📊</div>
+      <div class="comp-title">Dados & BI</div>
+      <div class="comp-items">
+        <div class="comp-item"><span class="comp-name">Excel</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:85%"></div></div><span class="comp-pct">85%</span></div>
+        <div class="comp-item"><span class="comp-name">SQL</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:65%"></div></div><span class="comp-pct">65%</span></div>
+        <div class="comp-item"><span class="comp-name">Power BI</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:40%"></div></div><span class="comp-pct">40%</span></div>
+        <div class="comp-item"><span class="comp-name">Dashboards</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:75%"></div></div><span class="comp-pct">75%</span></div>
+        <div class="comp-item"><span class="comp-name">Indicadores (KPIs)</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:80%"></div></div><span class="comp-pct">80%</span></div>
+      </div>
+    </div>
+    <!-- Gestão -->
+    <div class="comp-card gestao">
+      <div class="comp-icon">🎯</div>
+      <div class="comp-title">Gestão & Processos</div>
+      <div class="comp-items">
+        <div class="comp-item"><span class="comp-name">Gestão de Projetos</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:78%"></div></div><span class="comp-pct">78%</span></div>
+        <div class="comp-item"><span class="comp-name">Scrum</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:65%"></div></div><span class="comp-pct">65%</span></div>
+        <div class="comp-item"><span class="comp-name">Kanban</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:80%"></div></div><span class="comp-pct">80%</span></div>
+        <div class="comp-item"><span class="comp-name">Planejamento Estratégico</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:82%"></div></div><span class="comp-pct">82%</span></div>
+        <div class="comp-item"><span class="comp-name">Melhoria Contínua</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:85%"></div></div><span class="comp-pct">85%</span></div>
+      </div>
+    </div>
+    <!-- Tech -->
+    <div class="comp-card tech">
+      <div class="comp-icon">⚡</div>
+      <div class="comp-title">Tecnologia</div>
+      <div class="comp-items">
+        <div class="comp-item"><span class="comp-name">HTML / CSS</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:80%"></div></div><span class="comp-pct">80%</span></div>
+        <div class="comp-item"><span class="comp-name">JavaScript</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:65%"></div></div><span class="comp-pct">65%</span></div>
+        <div class="comp-item"><span class="comp-name">Git / GitHub</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:70%"></div></div><span class="comp-pct">70%</span></div>
+        <div class="comp-item"><span class="comp-name">Automações</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:72%"></div></div><span class="comp-pct">72%</span></div>
+        <div class="comp-item"><span class="comp-name">Sistemas Web</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:68%"></div></div><span class="comp-pct">68%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="section-label">Repositórios GitHub</div>
+  <h2 class="section-title">Projetos desenvolvidos</h2>
+  <p class="section-sub">Soluções reais criadas para resolver problemas de negócio, processos e gestão operacional.</p>
+
+  <div class="projects-grid">
+
+    <!-- AutoCare Pro -->
+    <div class="proj-card destaque">
+      <span class="proj-badge badge-gestao">Gestão Operacional</span>
+      <div class="proj-icon" style="background:rgba(77,200,160,.1);color:#4dc8a0">🚗</div>
+      <div class="proj-title">AutoCare Pro</div>
+      <p class="proj-desc">Sistema web para gestão completa de manutenção veicular. Agendamentos, histórico, controle de serviços e dashboard com indicadores. Inclui backend de webhooks para automações pós-agendamento e deploy contínuo via GitHub Pages.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">GitHub Actions</span>
+        <span class="tech-pill">Webhooks</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/FernandoR-Reis/autocare-projeto-manutencao" target="_blank" class="proj-link">Código</a>
+        <a href="https://fernandor-reis.github.io/autocare-projeto-manutencao/" target="_blank" class="proj-link">Demo</a>
+      </div>
+    </div>
+
+    <!-- SITE EROELEV -->
+    <div class="proj-card">
+      <span class="proj-badge badge-front">Front-end</span>
+      <div class="proj-icon" style="background:rgba(167,139,250,.1);color:#a78bfa">⚡</div>
+      <div class="proj-title">Site Eroelev</div>
+      <p class="proj-desc">Site institucional desenvolvido para empresa do segmento de manutenção elétrica/elevadores. Layout responsivo, identidade visual personalizada com sistema de variáveis CSS e arquitetura modular de estilos.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">JavaScript</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/FernandoR-Reis/SITE-EROELEV" target="_blank" class="proj-link">Código</a>
+      </div>
+    </div>
+
+    <!-- Otro Cardápio -->
+    <div class="proj-card">
+      <span class="proj-badge badge-gestao">Food & Beverage</span>
+      <div class="proj-icon" style="background:rgba(42,180,224,.1);color:var(--cyan)">🍽️</div>
+      <div class="proj-title">Otro — Cardápio Digital</div>
+      <p class="proj-desc">Cardápio digital interativo para restaurante. Interface visual sofisticada com paleta de cores personalizada, tipografia premium e layout otimizado para conversão. Desenvolvido a partir da vivência no setor de bares e restaurantes.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/FernandoR-Reis/Otro-cardapio" target="_blank" class="proj-link">Código</a>
+      </div>
+    </div>
+
+    <!-- Projeto Elétrica Reis -->
+    <div class="proj-card">
+      <span class="proj-badge badge-front">Institucional</span>
+      <div class="proj-icon" style="background:rgba(250,199,117,.1);color:#fac775">🔌</div>
+      <div class="proj-title">Elétrica Reis</div>
+      <p class="proj-desc">Site para empresa de serviços elétricos. Estruturação da presença digital para negócio local, com foco em apresentação de serviços, credibilidade e conversão de clientes via web.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">JavaScript</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/FernandoR-Reis/projeto-eletrica-reis" target="_blank" class="proj-link">Código</a>
+      </div>
+    </div>
+
+    <!-- Reis Flow card small -->
+    <div class="proj-card destaque" style="grid-column:span 2;background:linear-gradient(135deg,var(--card) 0%,rgba(14,77,110,.4) 100%)">
+      <span class="proj-badge badge-destaque">Em Desenvolvimento ⭐</span>
+      <div class="proj-icon" style="background:rgba(42,180,224,.15);color:var(--cyan)">🚀</div>
+      <div class="proj-title">Reis Flow — Sistema de Gestão Empresarial</div>
+      <p class="proj-desc">Sistema completo focado em processos, controle financeiro, obras, equipes, orçamentos e indicadores. Desenvolvido a partir de experiências reais na gestão de empresas de serviço e manutenção. Veja a seção completa abaixo.</p>
+      <div class="proj-techs">
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">Automações</span>
+        <span class="tech-pill">Dashboards</span>
+      </div>
+      <div class="proj-links">
+        <a href="#reisflow" class="proj-link" style="text-decoration:none">Ver detalhes</a>
+        <a href="https://github.com/FernandoR-Reis" target="_blank" class="proj-link">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REIS FLOW DESTAQUE -->
+<section id="reisflow" style="padding-top:0">
+  <div class="section-label">Projeto em destaque</div>
+  <h2 class="section-title">Reis Flow</h2>
+  <div class="reisflow">
+    <div class="rf-grid">
+      <div>
+        <div class="rf-title">REIS FLOW</div>
+        <p class="rf-sub">Sistema de gestão empresarial focado em processos, controle financeiro, obras, equipes, orçamentos e indicadores.</p>
+        <div class="rf-features">
+          <div class="rf-feature"><div class="rf-dot"></div>Controle financeiro com fluxo de caixa e DRE</div>
+          <div class="rf-feature"><div class="rf-dot"></div>Gestão de obras e orçamentos com timeline</div>
+          <div class="rf-feature"><div class="rf-dot"></div>Dashboard de indicadores operacionais</div>
+          <div class="rf-feature"><div class="rf-dot"></div>Gestão de equipes e tarefas por projeto</div>
+          <div class="rf-feature"><div class="rf-dot"></div>Automações de processos recorrentes</div>
+          <div class="rf-feature"><div class="rf-dot"></div>Relatórios exportáveis para análise</div>
+        </div>
+      </div>
+      <div>
+        <div class="rf-roadmap">
+          <h4>Roadmap</h4>
+          <div class="roadmap-items">
+            <div class="roadmap-item"><div class="roadmap-dot done"></div><span style="font-size:.85rem;color:var(--gray)">Módulo financeiro — <span style="color:#4dc8a0">concluído</span></span></div>
+            <div class="roadmap-item"><div class="roadmap-dot done"></div><span style="font-size:.85rem;color:var(--gray)">Gestão de obras — <span style="color:#4dc8a0">concluído</span></span></div>
+            <div class="roadmap-item"><div class="roadmap-dot in-progress"></div><span style="font-size:.85rem;color:var(--gray)">Dashboard de KPIs — <span style="color:var(--cyan)">em desenvolvimento</span></span></div>
+            <div class="roadmap-item"><div class="roadmap-dot in-progress"></div><span style="font-size:.85rem;color:var(--gray)">Gestão de equipes — <span style="color:var(--cyan)">em desenvolvimento</span></span></div>
+            <div class="roadmap-item"><div class="roadmap-dot planned"></div><span style="font-size:.85rem;color:var(--gray)">Automações avançadas — planejado</span></div>
+            <div class="roadmap-item"><div class="roadmap-dot planned"></div><span style="font-size:.85rem;color:var(--gray)">Integração com BI — planejado</span></div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;padding:1.25rem;background:rgba(42,180,224,.05);border:1px solid var(--border);border-radius:8px">
+          <p style="font-size:.8rem;color:var(--cyan);font-weight:600;letter-spacing:.5px;margin-bottom:.5rem">OBJETIVO</p>
+          <p style="font-size:.88rem;color:var(--gray);font-weight:300;line-height:1.65">Substituir planilhas e processos manuais em pequenas e médias empresas de serviço por uma plataforma integrada de gestão, com visão em tempo real dos indicadores operacionais e financeiros.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-label">Trajetória</div>
+  <h2 class="section-title">Linha do tempo profissional</h2>
+  <p class="section-sub">A evolução de uma carreira que une operação, processos e tecnologia.</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2018 — 2020</div>
+      <div class="tl-title">Gestão Operacional</div>
+      <p class="tl-desc">Atuação na gestão de bares e restaurantes. Controle de estoque, gestão de equipes, atendimento ao cliente e fluxo de caixa. Primeira imersão na identificação de gargalos operacionais.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2020 — 2021</div>
+      <div class="tl-title">Estruturação de Processos</div>
+      <p class="tl-desc">Criação de processos operacionais documentados, SOPs e checklists. Estruturação de setores de atendimento, compras e financeiro em empresas de serviço.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2021 — 2022</div>
+      <div class="tl-title">Automação de Rotinas</div>
+      <p class="tl-desc">Início da automação de rotinas com planilhas avançadas e ferramentas digitais. Redução de retrabalho e erros operacionais via padronização e tecnologia.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2022 — 2023</div>
+      <div class="tl-title">Desenvolvimento de Sistemas</div>
+      <p class="tl-desc">Aprendizado de HTML, CSS e JavaScript. Criação dos primeiros sistemas próprios: cardápios digitais, sites institucionais e ferramentas de gestão para empresas parceiras.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2023 — 2024</div>
+      <div class="tl-title">Análise de Dados</div>
+      <p class="tl-desc">Desenvolvimento de dashboards e indicadores. SQL, Excel avançado e Power BI (em desenvolvimento). Criação do AutoCare Pro e outros sistemas com foco em dados operacionais.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2024 — presente</div>
+      <div class="tl-title">Gestão de Projetos</div>
+      <p class="tl-desc">Aplicação de Scrum e Kanban no desenvolvimento dos próprios projetos. Transição para áreas de Analista de Dados, BI, Business Analyst, PMO e Gerente de Projetos Júnior.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-label">Contato</div>
+  <h2 class="section-title">Vamos conversar?</h2>
+  <p class="section-sub">Aberto a oportunidades em Dados, BI, Business Analysis e Gestão de Projetos.</p>
+  <div class="contact-grid">
+    <a href="https://www.linkedin.com/in/fernando-reis-a085521b4/" target="_blank" class="contact-card">
+      <div class="contact-icon" style="background:rgba(10,102,194,.15);color:#0a66c2;font-size:1.4rem">in</div>
+      <div><div class="contact-label">LinkedIn</div><div class="contact-value">fernando-reis-a085521b4</div></div>
+    </a>
+    <a href="https://github.com/FernandoR-Reis" target="_blank" class="contact-card">
+      <div class="contact-icon" style="background:rgba(255,255,255,.05);font-size:1.3rem">🐙</div>
+      <div><div class="contact-label">GitHub</div><div class="contact-value">FernandoR-Reis</div></div>
+    </a>
+    <a href="mailto:fernandoreisdj9@gmail.com" class="contact-card">
+      <div class="contact-icon" style="background:rgba(234,67,53,.1);color:#ea4335;font-size:1.2rem">✉️</div>
+      <div><div class="contact-label">E-mail</div><div class="contact-value">fernandoreisdj9@gmail.com</div></div>
+    </a>
+    <a href="https://wa.me/5511999999999" target="_blank" class="contact-card">
+      <div class="contact-icon" style="background:rgba(37,211,102,.1);color:#25d366;font-size:1.2rem">💬</div>
+      <div><div class="contact-label">WhatsApp</div><div class="contact-value">São Paulo, SP</div></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Fernando Reis — Dados · BI · Gestão de Projetos</span>
+  <a href="https://github.com/FernandoR-Reis" target="_blank" style="color:var(--cyan);text-decoration:none">github.com/FernandoR-Reis ↗</a>
+</footer>
+
+<script>
+// Counter animation
+const counters = document.querySelectorAll('[data-target]');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const target = +el.dataset.target;
+      let cur = 0;
+      const step = target / 40;
+      const timer = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = Math.round(cur) + (target >= 100 ? '+' : '');
+        if(cur >= target) clearInterval(timer);
+      }, 30);
+      obs.unobserve(el);
+    }
+  });
+}, {threshold: 0.3});
+counters.forEach(c => obs.observe(c));
+
+// Bar animation on scroll
+const bars = document.querySelectorAll('.comp-bar');
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.width = e.target.style.width;
+      barObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.2});
+bars.forEach(b => {
+  const w = b.style.width;
+  b.style.width = '0';
+  setTimeout(() => { b.style.width = w; }, 200);
+  barObs.observe(b);
+});
+
+// Competence cards animation from sides
+const compCards = document.querySelectorAll('.comp-card');
+const compGrid = document.querySelector('.comp-grid');
+if (compGrid && compCards.length) {
+  compGrid.classList.add('is-armed');
+  const compObs = new IntersectionObserver(entries => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        compObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  compCards.forEach((card) => compObs.observe(card));
+}
+
+// Timeline draw + items reveal on scroll
+const timeline = document.querySelector('.timeline');
+if (timeline) {
+  const timelineItems = timeline.querySelectorAll('.tl-item');
+  timeline.classList.add('is-armed');
+
+  const timelineObs = new IntersectionObserver(entries => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        timeline.classList.add('is-visible');
+        timelineItems.forEach((item, index) => {
+          setTimeout(() => item.classList.add('is-visible'), index * 170);
+        });
+        timelineObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  timelineObs.observe(timeline);
+}
+</script>
+</body>
+</html>

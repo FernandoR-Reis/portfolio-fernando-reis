@@ -1,6 +1,8 @@
-# Portfólio — Fernando Reis
+# Portfólio — Fernando Reis (versão antiga)
 
 Portfólio profissional com foco em Dados, BI, automação de processos e gestão de projetos.
+
+Versão antiga restaurada e publicada para manter a identidade visual original.
 
 ## 🚀 Acesso online (domínio provisório)
 

@@ -3,839 +3,643 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fernando Reis — Dados · BI · Gestão de Projetos</title>
+<title>Fernando Reis — Dados · BI · Gestão Estratégica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0a1628;
-  --navy2:#0f2044;
-  --petrol:#0e4d6e;
-  --petrol2:#1a6b96;
-  --cyan:#2ab4e0;
-  --cyan2:#5ecfee;
-  --white:#f5f8fc;
-  --gray:#b0bec5;
-  --gray2:#78909c;
-  --card:#101e35;
-  --card2:#162540;
-  --border:rgba(42,180,224,0.15);
-  --border2:rgba(42,180,224,0.3);
-}
-html{scroll-behavior:smooth}
-body{
-  background:var(--navy);
-  color:var(--white);
-  font-family:'DM Sans',sans-serif;
-  font-size:16px;
-  line-height:1.7;
-  overflow-x:hidden;
-}
-
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 3rem;
-  background:rgba(10,22,40,0.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{
-  font-family:'Syne',sans-serif;
-  font-weight:800;font-size:1.2rem;
-  color:var(--cyan);letter-spacing:-.5px;
-}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{
-  color:var(--gray);text-decoration:none;
-  font-size:.88rem;font-weight:500;letter-spacing:.3px;
-  transition:color .2s;
-}
-.nav-links a:hover{color:var(--cyan)}
-.nav-contacts{display:flex;gap:.5rem;align-items:center}
-.nav-contacts .btn{
-  padding:.45rem .75rem;
-  font-size:.78rem;
-  border-radius:6px;
-  white-space:nowrap;
-  display:inline-flex;
-  align-items:center;
-  gap:.35rem;
-}
-.nav-contact-icon{width:14px;height:14px;display:block;filter:invert(1)}
-
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:8rem 3rem 5rem;
-  position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;
-  top:-200px;right:-300px;
-  width:700px;height:700px;
-  background:radial-gradient(circle, rgba(14,77,110,.5) 0%, transparent 65%);
-  pointer-events:none;
-}
-.hero::after{
-  content:'';position:absolute;
-  bottom:-100px;left:-200px;
-  width:500px;height:500px;
-  background:radial-gradient(circle, rgba(42,180,224,.08) 0%, transparent 70%);
-  pointer-events:none;
-}
-.hero-inner{max-width:780px;position:relative;z-index:1}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:.5rem;
-  border:1px solid var(--border2);
-  border-radius:100px;padding:.35rem 1rem;
-  font-size:.8rem;color:var(--cyan2);letter-spacing:.5px;
-  margin-bottom:1.5rem;
-  animation:fadeUp .8s ease both;
-}
-.hero-tag::before{
-  content:'';display:block;width:6px;height:6px;
-  background:var(--cyan);border-radius:50%;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(2.2rem,5vw,3.8rem);
-  font-weight:800;line-height:1.1;
-  letter-spacing:-1.5px;
-  margin-bottom:1.5rem;
-  animation:fadeUp .8s .1s ease both;
-}
-h1 span{color:var(--cyan)}
-.hero-sub{
-  font-size:1.1rem;color:var(--gray);font-weight:300;
-  max-width:560px;margin-bottom:2.5rem;
-  animation:fadeUp .8s .2s ease both;
-}
-.hero-btns{
-  display:flex;gap:1rem;flex-wrap:wrap;
-  animation:fadeUp .8s .3s ease both;
-}
-.btn{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.75rem 1.75rem;border-radius:8px;
-  font-family:'DM Sans',sans-serif;font-weight:500;
-  font-size:.9rem;text-decoration:none;
-  transition:all .2s;cursor:pointer;border:none;
-}
-.btn-primary{
-  background:var(--cyan);color:var(--navy);
-}
-.btn-primary:hover{background:var(--cyan2);transform:translateY(-2px)}
-.btn-secondary{
-  background:transparent;color:var(--white);
-  border:1px solid var(--border2);
-}
-.btn-secondary:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
-
-/* STATS ROW */
-.stats{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:12px;
-  overflow:hidden;margin:0 3rem;
-  animation:fadeUp .8s .5s ease both;
-}
-.stat{
-  background:var(--card);
-  padding:1.5rem 1.25rem;text-align:center;
-}
-.stat-num{
-  font-family:'Syne',sans-serif;
-  font-size:2rem;font-weight:800;
-  color:var(--cyan);display:block;
-}
-.stat-label{font-size:.8rem;color:var(--gray);margin-top:.2rem}
-
-/* SECTION COMMON */
-section{padding:5rem 3rem}
-.section-label{
-  font-size:.75rem;color:var(--cyan);
-  letter-spacing:2px;text-transform:uppercase;
-  font-weight:500;margin-bottom:.75rem;
-}
-.section-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(1.8rem,3.5vw,2.6rem);
-  font-weight:800;letter-spacing:-1px;
-  margin-bottom:1rem;line-height:1.15;
-}
-.section-sub{color:var(--gray);font-weight:300;max-width:520px;margin-bottom:3rem}
-
-/* SOBRE */
-.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.sobre-text p{color:var(--gray);margin-bottom:1.2rem;font-weight:300;line-height:1.85}
-.sobre-text p strong{color:var(--white);font-weight:500}
-.sobre-skills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
-.skill-tag{
-  background:var(--card2);border:1px solid var(--border);
-  border-radius:6px;padding:.4rem .9rem;
-  font-size:.8rem;color:var(--cyan2);font-weight:500;
-}
-
-/* COMPETÊNCIAS DASHBOARD */
-.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.comp-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:12px;padding:1.5rem;
-  position:relative;overflow:hidden;
-  transition:transform .75s cubic-bezier(.22,1,.36,1),opacity .75s ease;
-}
-.comp-grid.is-armed .comp-card{opacity:0}
-.comp-grid.is-armed .comp-card:nth-child(odd){transform:translateX(-70px)}
-.comp-grid.is-armed .comp-card:nth-child(even){transform:translateX(70px)}
-.comp-grid.is-armed .comp-card.is-visible{opacity:1;transform:translateX(0)}
-.comp-grid.is-armed .comp-card > *{
-  opacity:0;
-  transform:translateY(8px);
-  transition:opacity .45s ease,transform .45s ease;
-}
-.comp-grid.is-armed .comp-card.is-visible > *{opacity:1;transform:translateY(0)}
-.comp-grid.is-armed .comp-card.is-visible > *:nth-child(1){transition-delay:.08s}
-.comp-grid.is-armed .comp-card.is-visible > *:nth-child(2){transition-delay:.14s}
-.comp-grid.is-armed .comp-card.is-visible > *:nth-child(3){transition-delay:.2s}
-.comp-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-}
-.comp-card.dados::before{background:var(--cyan)}
-.comp-card.gestao::before{background:#4dc8a0}
-.comp-card.tech::before{background:#a78bfa}
-.comp-icon{
-  font-size:1.5rem;margin-bottom:1rem;
-  width:42px;height:42px;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:8px;
-}
-.comp-card.dados .comp-icon{background:rgba(42,180,224,.1);color:var(--cyan)}
-.comp-card.gestao .comp-icon{background:rgba(77,200,160,.1);color:#4dc8a0}
-.comp-card.tech .comp-icon{background:rgba(167,139,250,.1);color:#a78bfa}
-.comp-title{
-  font-family:'Syne',sans-serif;font-size:1rem;
-  font-weight:700;margin-bottom:1rem;
-}
-.comp-items{display:flex;flex-direction:column;gap:.6rem}
-.comp-item{display:flex;align-items:center;justify-content:space-between}
-.comp-name{font-size:.85rem;color:var(--gray)}
-.comp-bar-wrap{
-  flex:1;margin:0 .75rem;
-  height:4px;background:rgba(255,255,255,.08);
-  border-radius:4px;overflow:hidden;
-}
-.comp-bar{
-  height:100%;border-radius:4px;
-  transition:width 1.2s ease;
-}
-.comp-card.dados .comp-bar{background:var(--cyan)}
-.comp-card.gestao .comp-bar{background:#4dc8a0}
-.comp-card.tech .comp-bar{background:#a78bfa}
-.comp-pct{font-size:.75rem;color:var(--gray2);min-width:28px;text-align:right}
-
-/* PROJETOS */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
-.proj-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:12px;padding:1.5rem;
-  display:flex;flex-direction:column;
-  transition:all .3s;position:relative;overflow:hidden;
-}
-.proj-card:hover{
-  border-color:var(--border2);
-  transform:translateY(-4px);
-  box-shadow:0 12px 40px rgba(0,0,0,.3);
-}
-.proj-card.destaque{
-  border-color:rgba(42,180,224,.35);
-  background:linear-gradient(135deg,var(--card) 0%,rgba(14,77,110,.3) 100%);
-}
-.proj-badge{
-  position:absolute;top:1rem;right:1rem;
-  font-size:.7rem;font-weight:600;letter-spacing:.5px;
-  padding:.3rem .7rem;border-radius:100px;
-}
-.badge-destaque{background:rgba(42,180,224,.15);color:var(--cyan)}
-.badge-gestao{background:rgba(77,200,160,.1);color:#4dc8a0}
-.badge-front{background:rgba(167,139,250,.1);color:#a78bfa}
-.proj-icon{
-  width:44px;height:44px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;margin-bottom:1rem;
-}
-.proj-title{
-  font-family:'Syne',sans-serif;
-  font-size:1.05rem;font-weight:700;
-  margin-bottom:.5rem;
-}
-.proj-desc{
-  font-size:.88rem;color:var(--gray);
-  font-weight:300;line-height:1.65;
-  flex:1;margin-bottom:1.25rem;
-}
-.proj-techs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
-.tech-pill{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:4px;padding:.2rem .6rem;
-  font-size:.73rem;color:var(--gray2);
-}
-.proj-links{display:flex;gap:.75rem}
-.proj-link{
-  font-size:.82rem;color:var(--cyan2);
-  text-decoration:none;font-weight:500;
-  display:inline-flex;align-items:center;gap:.3rem;
-}
-.proj-link:hover{color:var(--white)}
-.proj-link::after{content:'↗';font-size:.75rem}
-
-/* DESTAQUE REIS FLOW */
-.reisflow{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;padding:2.5rem;
-  position:relative;overflow:hidden;
-}
-.reisflow::before{
-  content:'REIS FLOW';
-  position:absolute;right:-20px;top:50%;transform:translateY(-50%);
-  font-family:'Syne',sans-serif;font-size:7rem;font-weight:800;
-  color:rgba(42,180,224,.04);letter-spacing:-4px;
-  pointer-events:none;white-space:nowrap;
-}
-.rf-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-.rf-title{
-  font-family:'Syne',sans-serif;
-  font-size:2.2rem;font-weight:800;
-  color:var(--cyan);letter-spacing:-1px;
-  margin-bottom:.5rem;
-}
-.rf-sub{color:var(--gray);font-weight:300;margin-bottom:2rem}
-.rf-features{display:flex;flex-direction:column;gap:.75rem}
-.rf-feature{
-  display:flex;align-items:center;gap:.75rem;
-  padding:.75rem 1rem;
-  background:rgba(42,180,224,.05);
-  border:1px solid var(--border);
-  border-radius:8px;
-  font-size:.88rem;color:var(--gray);
-}
-.rf-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;flex-shrink:0}
-.rf-roadmap{margin-top:2rem}
-.rf-roadmap h4{
-  font-family:'Syne',sans-serif;font-size:.85rem;
-  font-weight:700;color:var(--cyan2);
-  letter-spacing:1px;text-transform:uppercase;
-  margin-bottom:1rem;
-}
-.roadmap-items{display:flex;flex-direction:column;gap:.5rem}
-.roadmap-item{
-  display:flex;align-items:center;gap:.75rem;
-  font-size:.85rem;
-}
-.roadmap-dot{
-  width:10px;height:10px;border-radius:50%;flex-shrink:0;
-}
-.done{background:var(--cyan)}
-.in-progress{background:#4dc8a0}
-.planned{background:rgba(255,255,255,.2)}
-
-/* TIMELINE */
-.timeline{position:relative;padding-left:2rem}
-.timeline::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;
-  width:1px;background:var(--border2);
-}
-.timeline.is-armed::before{
-  transform:scaleY(0);
-  transform-origin:top;
-  transition:transform 1.2s ease;
-}
-.timeline.is-armed.is-visible::before{transform:scaleY(1)}
-.tl-item{
-  position:relative;margin-bottom:2.5rem;padding-left:2rem;
-}
-.timeline.is-armed .tl-item{
-  opacity:0;
-  transform:translateX(26px);
-  transition:opacity .55s ease,transform .55s ease;
-}
-.timeline.is-armed .tl-item.is-visible{opacity:1;transform:translateX(0)}
-.timeline.is-armed .tl-item > *{
-  opacity:0;
-  transform:translateY(9px);
-  transition:opacity .45s ease,transform .45s ease;
-}
-.timeline.is-armed .tl-item.is-visible > *{opacity:1;transform:translateY(0)}
-.timeline.is-armed .tl-item.is-visible > *:nth-child(1){transition-delay:.08s}
-.timeline.is-armed .tl-item.is-visible > *:nth-child(2){transition-delay:.14s}
-.timeline.is-armed .tl-item.is-visible > *:nth-child(3){transition-delay:.2s}
-.tl-item::before{
-  content:'';position:absolute;
-  left:-2.375rem;top:.35rem;
-  width:12px;height:12px;border-radius:50%;
-  background:var(--navy);
-  border:2px solid var(--cyan);
-}
-.tl-year{
-  font-size:.78rem;color:var(--cyan);
-  letter-spacing:1px;font-weight:600;
-  margin-bottom:.3rem;
-}
-.tl-title{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:1.05rem;margin-bottom:.4rem;
-}
-.tl-desc{font-size:.88rem;color:var(--gray);font-weight:300;line-height:1.65}
-
-/* CONTATO */
-.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
-.contact-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:12px;padding:1.5rem;
-  display:flex;align-items:center;gap:1rem;
-  text-decoration:none;color:var(--white);
-  transition:all .25s;
-}
-.contact-card:hover{border-color:var(--border2);transform:translateY(-3px)}
-.contact-icon{
-  width:46px;height:46px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;
-}
-.contact-label{font-size:.75rem;color:var(--gray);margin-bottom:.2rem}
-.contact-value{font-weight:500;font-size:.95rem}
-.whatsapp-logo{width:22px;height:22px;display:block;fill:currentColor}
-.contact-icon-img{width:22px;height:22px;display:block}
-
-/* FOOTER */
-footer{
-  border-top:1px solid var(--border);
-  padding:2rem 3rem;
-  display:flex;align-items:center;justify-content:space-between;
-  font-size:.82rem;color:var(--gray2);
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  nav{padding:.75rem 1.5rem}
-  .nav-links{display:none}
-  .nav-contacts{gap:.4rem;flex-wrap:wrap;justify-content:flex-end}
-  .nav-contacts .btn{font-size:.72rem;padding:.4rem .6rem}
-  .hero{padding:7rem 1.5rem 4rem}
-  .stats{margin:0 1.5rem}
-  section{padding:4rem 1.5rem}
-  .sobre-grid,.rf-grid,.comp-grid{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="portfolio-fernando-reis.css">
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="l-logo">Fernando Reis</div>
+  <div class="l-icons">
+    <div class="l-icon" title="Dados">📊</div>
+    <div class="l-icon" title="Gestão">🗂️</div>
+    <div class="l-icon" title="BI">📈</div>
+    <div class="l-icon" title="Processos">⚙️</div>
+  </div>
+  <div class="l-hint">Dados · BI · Gestão</div>
+  <div class="l-bar"><div class="l-fill"></div></div>
+</div>
+
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">FR</div>
-  <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#competencias">Competências</a></li>
-    <li><a href="#projetos">Projetos</a></li>
-    <li><a href="#reisflow">Reis Flow</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ul>
-  <div class="nav-contacts">
-    <a href="mailto:fernandoreisdj9@gmail.com" class="btn btn-secondary"><img src="https://img.icons8.com/?size=100&id=12580&format=png&color=000000" alt="" class="nav-contact-icon">E-mail</a>
-    <a href="tel:+5519999986024" class="btn btn-secondary"><img src="https://img.icons8.com/?size=100&id=11413&format=png&color=000000" alt="" class="nav-contact-icon">19 99998-6024</a>
-    <a href="https://wa.me/5519999986024" target="_blank" class="btn btn-secondary"><img src="https://img.icons8.com/?size=100&id=BkugfgmBwtEI&format=png&color=000000" alt="" class="nav-contact-icon">WhatsApp</a>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Fernando Reis</a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#certificacoes">Certificações</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu">☰</button>
+      <button class="btn-dm" id="dm-toggle" title="Alternar tema">🌙</button>
+      <a href="#contato" class="btn-cta">Fale comigo</a>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Disponível para oportunidades</div>
-    <h1>Transformando processos em resultados<br><span>através de dados, automação<br>e gestão.</span></h1>
-    <p class="hero-sub">Projetos voltados para análise de dados, dashboards, automação de processos e desenvolvimento de soluções para negócios.</p>
-    <div class="hero-btns">
-      <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
-      <a href="https://github.com/FernandoR-Reis" target="_blank" class="btn btn-secondary">GitHub</a>
-      <a href="#contato" class="btn btn-secondary">Contato</a>
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner" style="position:relative;z-index:1">
+    <div class="hero-content">
+      <div class="hero-tag" style="animation:fadeUp .6s ease both">
+        <span class="hero-tag-dot"></span>
+        Disponível para oportunidades
+      </div>
+      <h1 style="animation:fadeUp .6s .1s ease both">
+        Fernando<br><span>Reis</span>
+      </h1>
+      <div class="hero-role" style="animation:fadeUp .6s .2s ease both">
+        Analista de Dados · BI · Gestão Estratégica
+      </div>
+      <p class="hero-desc" style="animation:fadeUp .6s .3s ease both">
+        Transformo dados em decisões estratégicas através de dashboards, análises e automações que geram resultados reais para empresas.
+      </p>
+      <div class="hero-btns" style="animation:fadeUp .6s .4s ease both">
+        <a href="#projetos" class="btn-primary">
+          <span>Ver Projetos</span> <span>→</span>
+        </a>
+        <a href="#contato" class="btn-outline">Entrar em Contato</a>
+      </div>
+    </div>
+    <div class="hero-img" style="animation:fadeUp .8s .3s ease both">
+      <div class="hero-img-wrap">
+        <div class="hero-img-inner">FR</div>
+      </div>
+      <div class="hero-float f1 glass">
+        <div class="hero-float-dot"></div>
+        <span>Power BI</span>
+      </div>
+      <div class="hero-float f2 glass">
+        <div class="hero-float-dot"></div>
+        <span>Dashboard KPIs</span>
+      </div>
+      <div class="hero-float f3 glass">
+        <div class="hero-float-dot"></div>
+        <span>SQL · Excel</span>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat"><span class="stat-num" data-target="11">0</span><div class="stat-label">Repositórios</div></div>
-  <div class="stat"><span class="stat-num" data-target="3">0</span><div class="stat-label">Sistemas criados</div></div>
-  <div class="stat"><span class="stat-num" data-target="5">0</span><div class="stat-label">Empresas impactadas</div></div>
-  <div class="stat"><span class="stat-num" data-target="200">0</span><div class="stat-label">Horas de dev</div></div>
-  <div class="stat"><span class="stat-num" data-target="12">0</span><div class="stat-label">Processos documentados</div></div>
-</div>
 
 <!-- SOBRE -->
-<section id="sobre">
-  <div class="section-label">Sobre mim</div>
-  <h2 class="section-title">Negócio + Dados + Gestão</h2>
-  <div class="sobre-grid">
-    <div class="sobre-text">
-      <p>Profissional com experiência em <strong>gestão operacional</strong>, processos, atendimento ao cliente, controle financeiro e implantação de tecnologia em empresas dos segmentos de bares, restaurantes, serviços e manutenção.</p>
-      <p>Atualmente atua na criação de <strong>sistemas, dashboards, automações</strong> e ferramentas de gestão para aumentar produtividade, reduzir falhas operacionais e melhorar a tomada de decisão.</p>
-      <p>Possui perfil <strong>analítico, visão estratégica</strong>, facilidade para identificar gargalos e transformar problemas de negócio em soluções práticas — unindo vivência operacional real com desenvolvimento de soluções digitais.</p>
-      <p>Busca oportunidades como <strong>Analista de Dados, BI Analyst, Business Analyst, PMO ou Gerente de Projetos Jr.</strong></p>
-    </div>
-    <div>
-      <p style="font-size:.8rem;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:1rem">Habilidades</p>
-      <div class="sobre-skills">
-        <span class="skill-tag">Resolução de Problemas</span>
-        <span class="skill-tag">Análise de Dados</span>
-        <span class="skill-tag">Gestão de Processos</span>
-        <span class="skill-tag">Levantamento de Requisitos</span>
-        <span class="skill-tag">Organização de Projetos</span>
-        <span class="skill-tag">Comunicação entre Áreas</span>
-        <span class="skill-tag">Automação</span>
-        <span class="skill-tag">Pensamento Estratégico</span>
-        <span class="skill-tag">Scrum / Kanban</span>
-        <span class="skill-tag">Controle Financeiro</span>
-        <span class="skill-tag">Gestão de Equipes</span>
-        <span class="skill-tag">Melhoria Contínua</span>
+<section class="section" id="sobre" style="background:var(--white)">
+  <div class="section-inner">
+    <div class="section-chip">Sobre mim</div>
+    <h2 class="section-title">Dados + Gestão +<br>Resultados Reais</h2>
+    <div class="sobre-grid">
+      <div class="aos-left">
+        <div class="sobre-img">
+          <div class="sobre-img-inner">BI</div>
+          <!-- SVG decorativo de gráfico -->
+          <svg viewBox="0 0 400 300" style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="40,240 100,180 160,200 220,120 280,150 360,60" fill="none" stroke="#6C63FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="240" r="5" fill="#6C63FF"/>
+            <circle cx="100" cy="180" r="5" fill="#6C63FF"/>
+            <circle cx="160" cy="200" r="5" fill="#6C63FF"/>
+            <circle cx="220" cy="120" r="5" fill="#6C63FF"/>
+            <circle cx="280" cy="150" r="5" fill="#6C63FF"/>
+            <circle cx="360" cy="60" r="5" fill="#6C63FF"/>
+            <rect x="60" y="220" width="24" height="40" rx="4" fill="#6C63FF" opacity=".5"/>
+            <rect x="110" y="190" width="24" height="70" rx="4" fill="#6C63FF" opacity=".5"/>
+            <rect x="160" y="170" width="24" height="90" rx="4" fill="#6C63FF" opacity=".5"/>
+            <rect x="210" y="140" width="24" height="120" rx="4" fill="#6C63FF" opacity=".5"/>
+            <rect x="260" y="110" width="24" height="150" rx="4" fill="#6C63FF" opacity=".5"/>
+            <rect x="310" y="70" width="24" height="190" rx="4" fill="#6C63FF" opacity=".6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="aos-right">
+        <div class="sobre-kpis">
+          <div class="kpi-card">
+            <span class="kpi-num" data-target="8" data-suffix="+">0</span>
+            <div class="kpi-label">Anos de experiência</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-num" data-target="75" data-prefix="+" data-suffix="%">0</span>
+            <div class="kpi-label">Crescimento de faturamento</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-num" data-target="20" data-suffix="+">0</span>
+            <div class="kpi-label">Projetos realizados</div>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-num" data-target="100" data-suffix="+">0</span>
+            <div class="kpi-label">Dashboards e análises</div>
+          </div>
+        </div>
+        <div class="sobre-text">
+          <p>Profissional com experiência em <strong>gestão operacional</strong>, processos e implantação de tecnologia em empresas dos segmentos de serviços e manutenção.</p>
+          <p>Atua na criação de <strong>sistemas, dashboards e automações</strong> para aumentar produtividade, reduzir falhas e melhorar a tomada de decisão com dados.</p>
+          <p>Perfil analítico com visão estratégica, facilidade para identificar gargalos e transformar problemas de negócio em <strong>soluções práticas baseadas em dados</strong>.</p>
+        </div>
+        <div class="sobre-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Excel Avançado</span>
+          <span class="tag">KPIs</span>
+          <span class="tag">Gestão de Processos</span>
+          <span class="tag">Automação</span>
+          <span class="tag">Business Intelligence</span>
+          <span class="tag">Scrum</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMPETÊNCIAS -->
-<section id="competencias" style="padding-top:0">
-  <div class="section-label">Dashboard de competências</div>
-  <h2 class="section-title">Conhecimentos técnicos</h2>
-  <p class="section-sub">Visão consolidada das competências desenvolvidas ao longo da jornada de transição.</p>
-
-  <div class="comp-grid">
-    <!-- Dados -->
-    <div class="comp-card dados">
-      <div class="comp-icon">📊</div>
-      <div class="comp-title">Dados & BI</div>
-      <div class="comp-items">
-        <div class="comp-item"><span class="comp-name">Excel</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:85%"></div></div><span class="comp-pct">85%</span></div>
-        <div class="comp-item"><span class="comp-name">SQL</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:65%"></div></div><span class="comp-pct">65%</span></div>
-        <div class="comp-item"><span class="comp-name">Power BI</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:40%"></div></div><span class="comp-pct">40%</span></div>
-        <div class="comp-item"><span class="comp-name">Dashboards</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:75%"></div></div><span class="comp-pct">75%</span></div>
-        <div class="comp-item"><span class="comp-name">Indicadores (KPIs)</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:80%"></div></div><span class="comp-pct">80%</span></div>
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-inner">
+    <div class="section-chip">Competências</div>
+    <h2 class="section-title">Skills técnicas</h2>
+    <p class="section-sub">Competências desenvolvidas ao longo da jornada em dados, gestão e tecnologia.</p>
+    <div class="skills-grid">
+      <div class="skill-card aos">
+        <div class="skill-icon">📊</div>
+        <div class="skill-cat">Dados & BI</div>
+        <div class="skill-items">
+          <div class="skill-item">
+            <div class="skill-row"><span>Power BI</span><span class="skill-pct">75%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>SQL</span><span class="skill-pct">65%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="65"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Excel Avançado</span><span class="skill-pct">88%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Dashboard Design</span><span class="skill-pct">80%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>ETL / Tratamento</span><span class="skill-pct">70%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="70"></div></div>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- Gestão -->
-    <div class="comp-card gestao">
-      <div class="comp-icon">🎯</div>
-      <div class="comp-title">Gestão & Processos</div>
-      <div class="comp-items">
-        <div class="comp-item"><span class="comp-name">Gestão de Projetos</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:78%"></div></div><span class="comp-pct">78%</span></div>
-        <div class="comp-item"><span class="comp-name">Scrum</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:65%"></div></div><span class="comp-pct">65%</span></div>
-        <div class="comp-item"><span class="comp-name">Kanban</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:80%"></div></div><span class="comp-pct">80%</span></div>
-        <div class="comp-item"><span class="comp-name">Planejamento Estratégico</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:82%"></div></div><span class="comp-pct">82%</span></div>
-        <div class="comp-item"><span class="comp-name">Melhoria Contínua</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:85%"></div></div><span class="comp-pct">85%</span></div>
+      <div class="skill-card aos" style="transition-delay:.1s">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-cat">Gestão & Estratégia</div>
+        <div class="skill-items">
+          <div class="skill-item">
+            <div class="skill-row"><span>Liderança</span><span class="skill-pct">90%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Planejamento Estratégico</span><span class="skill-pct">85%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Gestão de KPIs</span><span class="skill-pct">82%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Gestão de Processos</span><span class="skill-pct">88%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Melhoria Contínua</span><span class="skill-pct">85%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="85"></div></div>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- Tech -->
-    <div class="comp-card tech">
-      <div class="comp-icon">⚡</div>
-      <div class="comp-title">Tecnologia</div>
-      <div class="comp-items">
-        <div class="comp-item"><span class="comp-name">HTML / CSS</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:80%"></div></div><span class="comp-pct">80%</span></div>
-        <div class="comp-item"><span class="comp-name">JavaScript</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:65%"></div></div><span class="comp-pct">65%</span></div>
-        <div class="comp-item"><span class="comp-name">Git / GitHub</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:70%"></div></div><span class="comp-pct">70%</span></div>
-        <div class="comp-item"><span class="comp-name">Automações</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:72%"></div></div><span class="comp-pct">72%</span></div>
-        <div class="comp-item"><span class="comp-name">Sistemas Web</span><div class="comp-bar-wrap"><div class="comp-bar" style="width:68%"></div></div><span class="comp-pct">68%</span></div>
+      <div class="skill-card aos" style="transition-delay:.2s">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-cat">Ferramentas</div>
+        <div class="skill-items">
+          <div class="skill-item">
+            <div class="skill-row"><span>GitHub</span><span class="skill-pct">70%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="70"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Notion / Trello</span><span class="skill-pct">85%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Google Workspace</span><span class="skill-pct">88%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>Automações Web</span><span class="skill-pct">72%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="72"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-row"><span>HTML / JS</span><span class="skill-pct">75%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" data-w="75"></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROJETOS -->
-<section id="projetos">
-  <div class="section-label">Repositórios GitHub</div>
-  <h2 class="section-title">Projetos desenvolvidos</h2>
-  <p class="section-sub">Soluções reais criadas para resolver problemas de negócio, processos e gestão operacional.</p>
+<section class="section" id="projetos" style="background:var(--white)">
+  <div class="section-inner">
+    <div class="section-chip">Portfólio</div>
+    <h2 class="section-title">Projetos desenvolvidos</h2>
+    <p class="section-sub">Soluções criadas para resolver problemas reais de negócio com dados e tecnologia.</p>
+    <div class="projects-grid">
 
-  <div class="projects-grid">
+      <!-- AutoCare Pro -->
+      <div class="proj-card aos">
+        <div class="proj-thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="rgba(108,99,255,.05)"/>
+            <rect x="30" y="40" width="340" height="130" rx="8" fill="white" opacity=".7"/>
+            <rect x="46" y="56" width="80" height="10" rx="3" fill="#6C63FF" opacity=".5"/>
+            <rect x="46" y="72" width="120" height="7" rx="3" fill="#E5E7EB"/>
+            <rect x="46" y="84" width="100" height="7" rx="3" fill="#E5E7EB"/>
+            <rect x="200" y="56" width="150" height="50" rx="6" fill="#EEF2FF"/>
+            <polyline points="210,95 230,75 250,82 270,65 290,70 340,58" fill="none" stroke="#6C63FF" stroke-width="2"/>
+            <rect x="46" y="110" width="50" height="40" rx="4" fill="#EEF2FF"/>
+            <rect x="106" y="120" width="50" height="30" rx="4" fill="#EEF2FF"/>
+            <rect x="166" y="115" width="50" height="35" rx="4" fill="#EEF2FF"/>
+            <rect x="226" y="125" width="50" height="25" rx="4" fill="#EEF2FF"/>
+            <rect x="286" y="108" width="50" height="42" rx="4" fill="#6C63FF" opacity=".4"/>
+          </svg>
+          <span class="proj-thumb-label">Gestão + Dados</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">AutoCare Pro — Gestão Veicular</div>
+          <p class="proj-desc">Sistema web completo para gestão de manutenção veicular com agendamentos, histórico, controle de serviços e dashboard de indicadores operacionais. Backend com webhooks para automações.</p>
+          <div class="proj-result">📈 KPIs de manutenção em tempo real com alertas automáticos</div>
+          <div class="proj-techs">
+            <span class="proj-tech">JavaScript</span>
+            <span class="proj-tech">HTML/CSS</span>
+            <span class="proj-tech">Node.js</span>
+            <span class="proj-tech">GitHub Actions</span>
+          </div>
+          <a href="https://fernandor-reis.github.io/autocare-projeto-manutencao/" target="_blank" class="proj-link">Ver projeto →</a>
+        </div>
+      </div>
 
-    <!-- AutoCare Pro -->
-    <div class="proj-card destaque">
-      <span class="proj-badge badge-gestao">Gestão Operacional</span>
-      <div class="proj-icon" style="background:rgba(77,200,160,.1);color:#4dc8a0">🚗</div>
-      <div class="proj-title">AutoCare Pro</div>
-      <p class="proj-desc">Sistema web para gestão completa de manutenção veicular. Agendamentos, histórico, controle de serviços e dashboard com indicadores. Inclui backend de webhooks para automações pós-agendamento e deploy contínuo via GitHub Pages.</p>
-      <div class="proj-techs">
-        <span class="tech-pill">JavaScript</span>
-        <span class="tech-pill">HTML</span>
-        <span class="tech-pill">Node.js</span>
-        <span class="tech-pill">GitHub Actions</span>
-        <span class="tech-pill">Webhooks</span>
+      <!-- Reis Flow -->
+      <div class="proj-card aos" style="transition-delay:.1s">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,rgba(79,70,229,.12) 0%,rgba(108,99,255,.08) 100%)">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="rgba(79,70,229,.05)"/>
+            <rect x="30" y="30" width="160" height="70" rx="8" fill="white" opacity=".8"/>
+            <rect x="46" y="44" width="60" height="8" rx="3" fill="#4F46E5" opacity=".6"/>
+            <rect x="46" y="58" width="130" height="6" rx="3" fill="#E5E7EB"/>
+            <rect x="46" y="70" width="110" height="6" rx="3" fill="#E5E7EB"/>
+            <rect x="46" y="82" width="120" height="6" rx="3" fill="#E5E7EB"/>
+            <rect x="210" y="30" width="160" height="70" rx="8" fill="white" opacity=".8"/>
+            <circle cx="238" cy="65" r="20" fill="rgba(108,99,255,.1)"/>
+            <path d="M228,65 A10,10 0 0,1 248,65" fill="none" stroke="#6C63FF" stroke-width="3"/>
+            <text x="234" y="69" font-size="10" fill="#6C63FF" font-weight="700">75%</text>
+            <rect x="30" y="115" width="340" height="55" rx="8" fill="white" opacity=".8"/>
+            <rect x="46" y="127" width="40" height="28" rx="4" fill="rgba(108,99,255,.15)"/>
+            <rect x="96" y="130" width="40" height="22" rx="4" fill="rgba(108,99,255,.15)"/>
+            <rect x="146" y="124" width="40" height="30" rx="4" fill="#6C63FF" opacity=".4"/>
+            <rect x="196" y="128" width="40" height="24" rx="4" fill="rgba(108,99,255,.15)"/>
+            <rect x="246" y="120" width="40" height="33" rx="4" fill="rgba(108,99,255,.2)"/>
+            <rect x="296" y="116" width="40" height="38" rx="4" fill="#6C63FF" opacity=".5"/>
+          </svg>
+          <span class="proj-thumb-label">SaaS · Em dev</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Reis Flow — Sistema de Gestão</div>
+          <p class="proj-desc">Plataforma SaaS para gestão empresarial com módulos de obras, orçamentos, financeiro, equipes, estoque e dashboards de KPIs. Desenvolvido a partir de experiências reais na gestão de empresas de serviço.</p>
+          <div class="proj-result">🚀 Controle financeiro + indicadores operacionais integrados</div>
+          <div class="proj-techs">
+            <span class="proj-tech">JavaScript</span>
+            <span class="proj-tech">HTML/CSS</span>
+            <span class="proj-tech">Supabase</span>
+            <span class="proj-tech">Dashboards</span>
+          </div>
+          <a href="https://github.com/FernandoR-Reis" target="_blank" class="proj-link">Ver no GitHub →</a>
+        </div>
       </div>
-      <div class="proj-links">
-        <a href="https://github.com/FernandoR-Reis/autocare-projeto-manutencao" target="_blank" class="proj-link">Código</a>
-        <a href="https://fernandor-reis.github.io/autocare-projeto-manutencao/" target="_blank" class="proj-link">Demo</a>
+
+      <!-- Dashboard Financeiro -->
+      <div class="proj-card aos" style="transition-delay:.2s">
+        <div class="proj-thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="rgba(108,99,255,.04)"/>
+            <rect x="30" y="20" width="100" height="50" rx="8" fill="white" opacity=".9"/>
+            <rect x="46" y="32" width="50" height="8" rx="3" fill="#6C63FF" opacity=".4"/>
+            <text x="46" y="60" font-size="16" font-weight="700" fill="#6C63FF">R$ 48k</text>
+            <rect x="145" y="20" width="100" height="50" rx="8" fill="white" opacity=".9"/>
+            <rect x="161" y="32" width="50" height="8" rx="3" fill="#6C63FF" opacity=".4"/>
+            <text x="161" y="60" font-size="16" font-weight="700" fill="#4F46E5">+18%</text>
+            <rect x="260" y="20" width="110" height="50" rx="8" fill="white" opacity=".9"/>
+            <rect x="276" y="32" width="50" height="8" rx="3" fill="#6C63FF" opacity=".4"/>
+            <text x="276" y="60" font-size="16" font-weight="700" fill="#6C63FF">92 ops</text>
+            <rect x="30" y="85" width="230" height="95" rx="8" fill="white" opacity=".9"/>
+            <polyline points="50,160 80,135 110,145 140,115 170,125 200,95 230,105" fill="none" stroke="#6C63FF" stroke-width="2.5" stroke-linecap="round"/>
+            <polygon points="50,160 80,135 110,145 140,115 170,125 200,95 230,105 230,165 50,165" fill="rgba(108,99,255,.1)"/>
+            <rect x="275" y="85" width="95" height="95" rx="8" fill="white" opacity=".9"/>
+            <circle cx="322" cy="132" r="28" fill="none" stroke="#E5E7EB" stroke-width="8"/>
+            <circle cx="322" cy="132" r="28" fill="none" stroke="#6C63FF" stroke-width="8" stroke-dasharray="106 176" stroke-dashoffset="44" stroke-linecap="round"/>
+            <text x="315" y="137" font-size="9" font-weight="700" fill="#6C63FF">60%</text>
+          </svg>
+          <span class="proj-thumb-label">BI · Analytics</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Dashboard Financeiro</div>
+          <p class="proj-desc">Dashboard executivo com indicadores financeiros em tempo real. Controle de receitas, despesas, margens, fluxo de caixa e análise de tendências com visualizações interativas.</p>
+          <div class="proj-result">📊 Redução de 60% no tempo de geração de relatórios</div>
+          <div class="proj-techs">
+            <span class="proj-tech">Excel</span>
+            <span class="proj-tech">Power BI</span>
+            <span class="proj-tech">SQL</span>
+            <span class="proj-tech">KPIs</span>
+          </div>
+          <a href="https://github.com/FernandoR-Reis" target="_blank" class="proj-link">Ver no GitHub →</a>
+        </div>
       </div>
+
+      <!-- Site Eroelev -->
+      <div class="proj-card aos" style="transition-delay:.3s">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,rgba(99,102,241,.1) 0%,rgba(167,139,250,.08) 100%)">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="rgba(99,102,241,.04)"/>
+            <rect x="40" y="20" width="320" height="165" rx="10" fill="white" opacity=".85"/>
+            <rect x="40" y="20" width="320" height="28" rx="10" fill="rgba(108,99,255,.08)"/>
+            <circle cx="62" cy="34" r="5" fill="#F87171" opacity=".7"/>
+            <circle cx="78" cy="34" r="5" fill="#FCD34D" opacity=".7"/>
+            <circle cx="94" cy="34" r="5" fill="#6EE7B7" opacity=".7"/>
+            <rect x="56" y="60" width="130" height="55" rx="6" fill="rgba(108,99,255,.12)"/>
+            <rect x="62" y="70" width="80" height="8" rx="3" fill="#6C63FF" opacity=".5"/>
+            <rect x="62" y="84" width="110" height="5" rx="3" fill="#E5E7EB"/>
+            <rect x="62" y="95" width="90" height="5" rx="3" fill="#E5E7EB"/>
+            <rect x="200" y="60" width="148" height="55" rx="6" fill="rgba(108,99,255,.07)"/>
+            <rect x="56" y="130" width="70" height="30" rx="6" fill="rgba(108,99,255,.15)"/>
+            <rect x="136" y="130" width="70" height="30" rx="6" fill="rgba(108,99,255,.07)"/>
+            <rect x="216" y="130" width="70" height="30" rx="6" fill="rgba(108,99,255,.07)"/>
+            <rect x="296" y="130" width="52" height="30" rx="6" fill="rgba(108,99,255,.07)"/>
+          </svg>
+          <span class="proj-thumb-label">Site Institucional</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Site Eroelev — Presença Digital</div>
+          <p class="proj-desc">Site institucional para empresa de manutenção elétrica e elevadores. Layout responsivo com identidade visual personalizada, sistema de variáveis CSS e arquitetura modular de estilos.</p>
+          <div class="proj-result">🌐 Estruturação da presença digital e captação de clientes</div>
+          <div class="proj-techs">
+            <span class="proj-tech">HTML</span>
+            <span class="proj-tech">CSS</span>
+            <span class="proj-tech">JavaScript</span>
+          </div>
+          <a href="https://github.com/FernandoR-Reis/SITE-EROELEV" target="_blank" class="proj-link">Ver no GitHub →</a>
+        </div>
+      </div>
+
     </div>
-
-    <!-- SITE EROELEV -->
-    <div class="proj-card">
-      <span class="proj-badge badge-front">Front-end</span>
-      <div class="proj-icon" style="background:rgba(167,139,250,.1);color:#a78bfa">⚡</div>
-      <div class="proj-title">Site Eroelev</div>
-      <p class="proj-desc">Site institucional desenvolvido para empresa do segmento de manutenção elétrica/elevadores. Layout responsivo, identidade visual personalizada com sistema de variáveis CSS e arquitetura modular de estilos.</p>
-      <div class="proj-techs">
-        <span class="tech-pill">HTML</span>
-        <span class="tech-pill">CSS</span>
-        <span class="tech-pill">JavaScript</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://github.com/FernandoR-Reis/SITE-EROELEV" target="_blank" class="proj-link">Código</a>
-      </div>
-    </div>
-
-    <!-- Otro Cardápio -->
-    <div class="proj-card">
-      <span class="proj-badge badge-gestao">Food & Beverage</span>
-      <div class="proj-icon" style="background:rgba(42,180,224,.1);color:var(--cyan)">🍽️</div>
-      <div class="proj-title">Otro — Cardápio Digital</div>
-      <p class="proj-desc">Cardápio digital interativo para restaurante. Interface visual sofisticada com paleta de cores personalizada, tipografia premium e layout otimizado para conversão. Desenvolvido a partir da vivência no setor de bares e restaurantes.</p>
-      <div class="proj-techs">
-        <span class="tech-pill">HTML</span>
-        <span class="tech-pill">CSS</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://github.com/FernandoR-Reis/Otro-cardapio" target="_blank" class="proj-link">Código</a>
-      </div>
-    </div>
-
-    <!-- Projeto Elétrica Reis -->
-    <div class="proj-card">
-      <span class="proj-badge badge-front">Institucional</span>
-      <div class="proj-icon" style="background:rgba(250,199,117,.1);color:#fac775">🔌</div>
-      <div class="proj-title">Elétrica Reis</div>
-      <p class="proj-desc">Site para empresa de serviços elétricos. Estruturação da presença digital para negócio local, com foco em apresentação de serviços, credibilidade e conversão de clientes via web.</p>
-      <div class="proj-techs">
-        <span class="tech-pill">CSS</span>
-        <span class="tech-pill">HTML</span>
-        <span class="tech-pill">JavaScript</span>
-      </div>
-      <div class="proj-links">
-        <a href="https://github.com/FernandoR-Reis/projeto-eletrica-reis" target="_blank" class="proj-link">Código</a>
-      </div>
-    </div>
-
-    <!-- Reis Flow card small -->
-    <div class="proj-card destaque" style="grid-column:span 2;background:linear-gradient(135deg,var(--card) 0%,rgba(14,77,110,.4) 100%)">
-      <span class="proj-badge badge-destaque">Em Desenvolvimento ⭐</span>
-      <div class="proj-icon" style="background:rgba(42,180,224,.15);color:var(--cyan)">🚀</div>
-      <div class="proj-title">Reis Flow — Sistema de Gestão Empresarial</div>
-      <p class="proj-desc">Sistema completo focado em processos, controle financeiro, obras, equipes, orçamentos e indicadores. Desenvolvido a partir de experiências reais na gestão de empresas de serviço e manutenção. Veja a seção completa abaixo.</p>
-      <div class="proj-techs">
-        <span class="tech-pill">JavaScript</span>
-        <span class="tech-pill">HTML</span>
-        <span class="tech-pill">CSS</span>
-        <span class="tech-pill">Automações</span>
-        <span class="tech-pill">Dashboards</span>
-      </div>
-      <div class="proj-links">
-        <a href="#reisflow" class="proj-link" style="text-decoration:none">Ver detalhes</a>
-        <a href="https://github.com/FernandoR-Reis" target="_blank" class="proj-link">GitHub</a>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- REIS FLOW DESTAQUE -->
-<section id="reisflow" style="padding-top:0">
-  <div class="section-label">Projeto em destaque</div>
-  <h2 class="section-title">Reis Flow</h2>
-  <div class="reisflow">
-    <div class="rf-grid">
-      <div>
-        <div class="rf-title">REIS FLOW</div>
-        <p class="rf-sub">Sistema de gestão empresarial focado em processos, controle financeiro, obras, equipes, orçamentos e indicadores.</p>
-        <div class="rf-features">
-          <div class="rf-feature"><div class="rf-dot"></div>Controle financeiro com fluxo de caixa e DRE</div>
-          <div class="rf-feature"><div class="rf-dot"></div>Gestão de obras e orçamentos com timeline</div>
-          <div class="rf-feature"><div class="rf-dot"></div>Dashboard de indicadores operacionais</div>
-          <div class="rf-feature"><div class="rf-dot"></div>Gestão de equipes e tarefas por projeto</div>
-          <div class="rf-feature"><div class="rf-dot"></div>Automações de processos recorrentes</div>
-          <div class="rf-feature"><div class="rf-dot"></div>Relatórios exportáveis para análise</div>
-        </div>
+<!-- EXPERIÊNCIA -->
+<section class="section" id="experiencia">
+  <div class="section-inner">
+    <div class="section-chip">Trajetória</div>
+    <h2 class="section-title">Experiência profissional</h2>
+    <p class="section-sub">Uma jornada que une gestão operacional, análise de dados e desenvolvimento de soluções.</p>
+    <div class="timeline-wrap">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2023 — Presente</div>
+        <div class="tl-role">Analista de Dados & Desenvolvedor de Sistemas</div>
+        <div class="tl-company">Reis Flow · Projetos independentes</div>
+        <p class="tl-desc">Desenvolvimento de sistemas de gestão, dashboards de KPIs e automações de processos. Criação do AutoCare Pro, Reis Flow e soluções para empresas parceiras. Foco em transformar dados operacionais em indicadores acionáveis.</p>
       </div>
-      <div>
-        <div class="rf-roadmap">
-          <h4>Roadmap</h4>
-          <div class="roadmap-items">
-            <div class="roadmap-item"><div class="roadmap-dot done"></div><span style="font-size:.85rem;color:var(--gray)">Módulo financeiro — <span style="color:#4dc8a0">concluído</span></span></div>
-            <div class="roadmap-item"><div class="roadmap-dot done"></div><span style="font-size:.85rem;color:var(--gray)">Gestão de obras — <span style="color:#4dc8a0">concluído</span></span></div>
-            <div class="roadmap-item"><div class="roadmap-dot in-progress"></div><span style="font-size:.85rem;color:var(--gray)">Dashboard de KPIs — <span style="color:var(--cyan)">em desenvolvimento</span></span></div>
-            <div class="roadmap-item"><div class="roadmap-dot in-progress"></div><span style="font-size:.85rem;color:var(--gray)">Gestão de equipes — <span style="color:var(--cyan)">em desenvolvimento</span></span></div>
-            <div class="roadmap-item"><div class="roadmap-dot planned"></div><span style="font-size:.85rem;color:var(--gray)">Automações avançadas — planejado</span></div>
-            <div class="roadmap-item"><div class="roadmap-dot planned"></div><span style="font-size:.85rem;color:var(--gray)">Integração com BI — planejado</span></div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2020 — 2023</div>
+        <div class="tl-role">Gerente Operacional</div>
+        <div class="tl-company">Tratto Cambuí · Gestão de Restaurante</div>
+        <p class="tl-desc">Reestruturação operacional completa. Implementação de controles financeiros, treinamento de equipes e estruturação de processos. Resultado: crescimento de 75% no faturamento através de gestão baseada em indicadores.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2018 — 2020</div>
+        <div class="tl-role">Gestão de Bares & Restaurantes</div>
+        <div class="tl-company">Segmento F&B · São Paulo</div>
+        <p class="tl-desc">Gestão de equipes, controle de estoque, fluxo de caixa e atendimento ao cliente. Primeiro contato com identificação de gargalos operacionais e criação de processos de melhoria contínua.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2016 — 2018</div>
+        <div class="tl-role">Estruturação de Processos</div>
+        <div class="tl-company">Empresas de Serviço · São Paulo</div>
+        <p class="tl-desc">Criação de SOPs, checklists e processos operacionais documentados para empresas de serviço e manutenção. Início da automação de rotinas com planilhas avançadas e ferramentas digitais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICAÇÕES -->
+<section class="section" id="certificacoes" style="background:var(--white)">
+  <div class="section-inner">
+    <div class="section-chip">Qualificações</div>
+    <h2 class="section-title">Certificações</h2>
+    <p class="section-sub">Formação contínua em dados, gestão e metodologias ágeis.</p>
+    <div class="certs-grid">
+      <div class="cert-card aos">
+        <div class="cert-icon">📊</div>
+        <div class="cert-name">Power BI</div>
+        <div class="cert-by">Microsoft</div>
+        <span class="cert-badge">Em andamento</span>
+      </div>
+      <div class="cert-card aos" style="transition-delay:.1s">
+        <div class="cert-icon">🗃️</div>
+        <div class="cert-name">SQL para Análise</div>
+        <div class="cert-by">Alura / DIO</div>
+        <span class="cert-badge">Concluído</span>
+      </div>
+      <div class="cert-card aos" style="transition-delay:.2s">
+        <div class="cert-icon">📈</div>
+        <div class="cert-name">Excel Avançado</div>
+        <div class="cert-by">Microsoft</div>
+        <span class="cert-badge">Concluído</span>
+      </div>
+      <div class="cert-card aos" style="transition-delay:.3s">
+        <div class="cert-icon">🗂️</div>
+        <div class="cert-name">Gestão de Projetos</div>
+        <div class="cert-by">PMI / Udemy</div>
+        <span class="cert-badge">Em andamento</span>
+      </div>
+      <div class="cert-card aos" style="transition-delay:.4s">
+        <div class="cert-icon">⚡</div>
+        <div class="cert-name">Metodologias Ágeis</div>
+        <div class="cert-by">Scrum · Kanban</div>
+        <span class="cert-badge">Concluído</span>
+      </div>
+      <div class="cert-card aos" style="transition-delay:.5s">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-name">Automação de Dados</div>
+        <div class="cert-by">Python / Power Automate</div>
+        <span class="cert-badge">Em andamento</span>
+      </div>
+      <div class="cert-card aos" style="transition-delay:.6s">
+        <div class="cert-icon">📉</div>
+        <div class="cert-name">Business Intelligence</div>
+        <div class="cert-by">FIAP / Online</div>
+        <span class="cert-badge">Em andamento</span>
+      </div>
+      <div class="cert-card aos" style="transition-delay:.7s">
+        <div class="cert-icon">🔗</div>
+        <div class="cert-name">GitHub & Git</div>
+        <div class="cert-by">GitHub Education</div>
+        <span class="cert-badge">Concluído</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section" id="depoimentos">
+  <div class="section-inner">
+    <div class="section-chip">Feedbacks</div>
+    <h2 class="section-title">O que dizem</h2>
+    <p class="section-sub">Opiniões de parceiros e clientes sobre os resultados gerados.</p>
+    <div class="testimonials-grid" style="margin-top:3rem">
+      <div class="test-card aos">
+        <div class="test-quote">"</div>
+        <p class="test-text">O Fernando transformou completamente nossa gestão operacional. Em menos de 6 meses implementou processos, dashboards e controles que nunca tínhamos tido. O crescimento de faturamento foi real e mensurável.</p>
+        <div class="test-author">
+          <div class="test-avatar">MT</div>
+          <div>
+            <div class="test-name">Marcos T.</div>
+            <div class="test-role">Proprietário · Restaurante Tratto</div>
+            <div class="test-stars">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
           </div>
         </div>
-        <div style="margin-top:2rem;padding:1.25rem;background:rgba(42,180,224,.05);border:1px solid var(--border);border-radius:8px">
-          <p style="font-size:.8rem;color:var(--cyan);font-weight:600;letter-spacing:.5px;margin-bottom:.5rem">OBJETIVO</p>
-          <p style="font-size:.88rem;color:var(--gray);font-weight:300;line-height:1.65">Substituir planilhas e processos manuais em pequenas e médias empresas de serviço por uma plataforma integrada de gestão, com visão em tempo real dos indicadores operacionais e financeiros.</p>
+      </div>
+      <div class="test-card aos" style="transition-delay:.1s">
+        <div class="test-quote">"</div>
+        <p class="test-text">Profissional que une visão de negócio com habilidade técnica. O sistema que criou para nossa empresa organizou toda a operação. A capacidade dele de entender o problema antes de sair desenvolvendo é diferenciada.</p>
+        <div class="test-author">
+          <div class="test-avatar">CA</div>
+          <div>
+            <div class="test-name">Carlos A.</div>
+            <div class="test-role">Diretor · Empresa de Manutenção</div>
+            <div class="test-stars">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- TIMELINE -->
-<section id="timeline">
-  <div class="section-label">Trajetória</div>
-  <h2 class="section-title">Linha do tempo profissional</h2>
-  <p class="section-sub">A evolução de uma carreira que une operação, processos e tecnologia.</p>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-year">2018 — 2020</div>
-      <div class="tl-title">Gestão Operacional</div>
-      <p class="tl-desc">Atuação na gestão de bares e restaurantes. Controle de estoque, gestão de equipes, atendimento ao cliente e fluxo de caixa. Primeira imersão na identificação de gargalos operacionais.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2020 — 2021</div>
-      <div class="tl-title">Estruturação de Processos</div>
-      <p class="tl-desc">Criação de processos operacionais documentados, SOPs e checklists. Estruturação de setores de atendimento, compras e financeiro em empresas de serviço.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2021 — 2022</div>
-      <div class="tl-title">Automação de Rotinas</div>
-      <p class="tl-desc">Início da automação de rotinas com planilhas avançadas e ferramentas digitais. Redução de retrabalho e erros operacionais via padronização e tecnologia.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2022 — 2023</div>
-      <div class="tl-title">Desenvolvimento de Sistemas</div>
-      <p class="tl-desc">Aprendizado de HTML, CSS e JavaScript. Criação dos primeiros sistemas próprios: cardápios digitais, sites institucionais e ferramentas de gestão para empresas parceiras.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2023 — 2024</div>
-      <div class="tl-title">Análise de Dados</div>
-      <p class="tl-desc">Desenvolvimento de dashboards e indicadores. SQL, Excel avançado e Power BI (em desenvolvimento). Criação do AutoCare Pro e outros sistemas com foco em dados operacionais.</p>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2024 — presente</div>
-      <div class="tl-title">Gestão de Projetos</div>
-      <p class="tl-desc">Aplicação de Scrum e Kanban no desenvolvimento dos próprios projetos. Transição para áreas de Analista de Dados, BI, Business Analyst, PMO e Gerente de Projetos Júnior.</p>
+      <div class="test-card aos" style="transition-delay:.2s">
+        <div class="test-quote">"</div>
+        <p class="test-text">O dashboard financeiro que o Fernando desenvolveu mudou como tomamos decisões na empresa. Agora temos visibilidade em tempo real dos indicadores que realmente importam para o negócio.</p>
+        <div class="test-author">
+          <div class="test-avatar">RS</div>
+          <div>
+            <div class="test-name">Renata S.</div>
+            <div class="test-role">CEO · Empresa de Serviços</div>
+            <div class="test-stars">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card aos" style="transition-delay:.3s">
+        <div class="test-quote">"</div>
+        <p class="test-text">Impressiona a capacidade de identificar rapidamente onde estão os gargalos e propor soluções práticas. Não é só técnico — é alguém que entende a operação e sabe o que os dados precisam responder.</p>
+        <div class="test-author">
+          <div class="test-avatar">PL</div>
+          <div>
+            <div class="test-name">Paulo L.</div>
+            <div class="test-role">Gerente · Empresa de Construção</div>
+            <div class="test-stars">
+              <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTATO -->
-<section id="contato">
-  <div class="section-label">Contato</div>
-  <h2 class="section-title">Vamos conversar?</h2>
-  <p class="section-sub">Aberto a oportunidades em Dados, BI, Business Analysis e Gestão de Projetos.</p>
-  <div class="contact-grid">
-    <a href="mailto:fernandoreisdj9@gmail.com" class="contact-card">
-      <div class="contact-icon" style="background:rgba(234,67,53,.1)"><img src="https://img.icons8.com/?size=100&id=12580&format=png&color=000000" alt="Logo de e-mail" class="contact-icon-img"></div>
-      <div><div class="contact-label">E-mail</div><div class="contact-value">fernandoreisdj9@gmail.com</div></div>
-    </a>
-    <a href="tel:+5519999986024" class="contact-card">
-      <div class="contact-icon" style="background:rgba(42,180,224,.12)"><img src="https://img.icons8.com/?size=100&id=11413&format=png&color=000000" alt="Logo de telefone" class="contact-icon-img"></div>
-      <div><div class="contact-label">Celular</div><div class="contact-value">19 99998-6024</div></div>
-    </a>
-    <a href="https://wa.me/5519999986024" target="_blank" class="contact-card">
-      <div class="contact-icon" style="background:rgba(37,211,102,.1)"><img src="https://img.icons8.com/?size=100&id=BkugfgmBwtEI&format=png&color=000000" alt="Logo do WhatsApp" class="contact-icon-img"></div>
-      <div><div class="contact-label">WhatsApp</div><div class="contact-value">19 99998-6024</div></div>
-    </a>
+<section class="section" id="contato" style="background:var(--white)">
+  <div class="section-inner">
+    <div class="section-chip">Contato</div>
+    <h2 class="section-title">Vamos conversar?</h2>
+    <div class="contact-grid">
+      <div class="contact-info aos-left">
+        <h3>Aberto para novas oportunidades</h3>
+        <p>Procuro posições em Análise de Dados, Business Intelligence, Business Analysis, PMO ou Gestão de Projetos. Disponível para freela, CLT ou PJ.</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/fernando-reis-a085521b4/" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="background:rgba(10,102,194,.1);color:#0a66c2;font-size:1.1rem;font-weight:800">in</div>
+            <div>
+              <div style="font-size:.75rem;color:var(--gray-mid)">LinkedIn</div>
+              <div>fernando-reis-a085521b4</div>
+            </div>
+          </a>
+          <a href="https://github.com/FernandoR-Reis" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="background:var(--bg);font-size:1.2rem">🐙</div>
+            <div>
+              <div style="font-size:.75rem;color:var(--gray-mid)">GitHub</div>
+              <div>FernandoR-Reis</div>
+            </div>
+          </a>
+          <a href="mailto:fernandoreisdj9@gmail.com" class="contact-link">
+            <div class="contact-link-icon" style="background:rgba(234,67,53,.08);font-size:1rem">✉️</div>
+            <div>
+              <div style="font-size:.75rem;color:var(--gray-mid)">E-mail</div>
+              <div>fernandoreisdj9@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://wa.me/5519999986024" target="_blank" class="contact-link">
+            <div class="contact-link-icon" style="background:rgba(37,211,102,.08);font-size:1.1rem">💬</div>
+            <div>
+              <div style="font-size:.75rem;color:var(--gray-mid)">WhatsApp</div>
+              <div>(19) 99998-6024</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form aos-right" id="contact-form" novalidate>
+        <div class="form-group">
+          <label for="from_name">Seu nome</label>
+          <input type="text" id="from_name" name="from_name" placeholder="Como posso te chamar?" required>
+        </div>
+        <div class="form-group">
+          <label for="reply_to">E-mail</label>
+          <input type="email" id="reply_to" name="reply_to" placeholder="seu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Mensagem</label>
+          <textarea id="message" name="message" rows="5" placeholder="Fala sobre a oportunidade ou projeto..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="form-submit-btn">Enviar mensagem →</button>
+        <div id="form-feedback" style="display:none;margin-top:12px;padding:12px 16px;border-radius:10px;font-size:.9rem;font-weight:500"></div>
+      </form>
+    </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <span>© 2026 Fernando Reis — Dados · BI · Gestão de Projetos</span>
-  <a href="https://github.com/FernandoR-Reis" target="_blank" style="color:var(--cyan);text-decoration:none">github.com/FernandoR-Reis ↗</a>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">Fernando Reis</a>
+    <p>© 2026 · Dados · BI · Gestão Estratégica</p>
+    <a href="https://github.com/FernandoR-Reis" target="_blank" style="font-size:.82rem;color:var(--purple);text-decoration:none;font-weight:600">github.com/FernandoR-Reis ↗</a>
+  </div>
 </footer>
 
-<script>
-// Counter animation
-const counters = document.querySelectorAll('[data-target]');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      const el = e.target;
-      const target = +el.dataset.target;
-      let cur = 0;
-      const step = target / 40;
-      const timer = setInterval(() => {
-        cur = Math.min(cur + step, target);
-        el.textContent = Math.round(cur) + (target >= 100 ? '+' : '');
-        if(cur >= target) clearInterval(timer);
-      }, 30);
-      obs.unobserve(el);
-    }
-  });
-}, {threshold: 0.3});
-counters.forEach(c => obs.observe(c));
-
-// Bar animation on scroll
-const bars = document.querySelectorAll('.comp-bar');
-const barObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.style.width = e.target.style.width;
-      barObs.unobserve(e.target);
-    }
-  });
-}, {threshold: 0.2});
-bars.forEach(b => {
-  const w = b.style.width;
-  b.style.width = '0';
-  setTimeout(() => { b.style.width = w; }, 200);
-  barObs.observe(b);
-});
-
-// Competence cards animation from sides
-const compCards = document.querySelectorAll('.comp-card');
-const compGrid = document.querySelector('.comp-grid');
-if (compGrid && compCards.length) {
-  compGrid.classList.add('is-armed');
-  const compObs = new IntersectionObserver(entries => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        compObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.25 });
-
-  compCards.forEach((card) => compObs.observe(card));
-}
-
-// Timeline draw + items reveal on scroll
-const timeline = document.querySelector('.timeline');
-if (timeline) {
-  const timelineItems = timeline.querySelectorAll('.tl-item');
-  timeline.classList.add('is-armed');
-
-  const timelineObs = new IntersectionObserver(entries => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        timeline.classList.add('is-visible');
-        timelineItems.forEach((item, index) => {
-          setTimeout(() => item.classList.add('is-visible'), index * 170);
-        });
-        timelineObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.25 });
-
-  timelineObs.observe(timeline);
-}
-</script>
+<script src="portfolio-fernando-reis.js"></script>
 </body>
 </html>

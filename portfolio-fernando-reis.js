@@ -126,9 +126,9 @@ aosEls.forEach(el=>aosObs.observe(el));
 // 2. Adicione um Email Service (Gmail, Outlook, etc.)
 // 3. Crie um Email Template com as variáveis: {{from_name}}, {{reply_to}}, {{message}}
 // 4. Substitua os valores abaixo (Public Key, Service ID e Template ID)
-const EMAILJS_PUBLIC_KEY  = 'SUA_PUBLIC_KEY';   // Account → API Keys
-const EMAILJS_SERVICE_ID  = 'SUA_SERVICE_ID';   // Email Services → Service ID
-const EMAILJS_TEMPLATE_ID = 'SEU_TEMPLATE_ID';  // Email Templates → Template ID
+const EMAILJS_PUBLIC_KEY  = 'ebUz9C_L-MgkjjMak';   // Account → API Keys
+const EMAILJS_SERVICE_ID  = 'service_aezpkjl';   // Email Services → Service ID
+const EMAILJS_TEMPLATE_ID = 'template_xf8alyt';  // Email Templates → Template ID
 
 emailjs.init(EMAILJS_PUBLIC_KEY);
 

@@ -5,7 +5,7 @@ Design responsivo, tema claro/escuro, animações suaves e formulário de contat
 
 ## 🌐 Acesso online
 
-👉 **https://fernandor-reis.github.io/portfolio-fernando-reis/**
+👉 **https://fernando.reis-eh.com/**
 
 ## 📁 Estrutura do projeto
 

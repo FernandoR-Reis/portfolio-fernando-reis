@@ -1,46 +1,3 @@
-// LOADER
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const l = document.getElementById('loader');
-    l.style.opacity = '0';
-    setTimeout(() => l.style.display = 'none', 600);
-  }, 1800);
-});
-
-// CURSOR
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let mx=0,my=0;
-let rx=0,ry=0;
-document.addEventListener('mousemove', e => {
-  mx=e.clientX; my=e.clientY;
-  cur.style.left=mx+'px'; cur.style.top=my+'px';
-});
-
-function animRing(){
-  rx+=(mx-rx)*.12;
-  ry+=(my-ry)*.12;
-  ring.style.left=rx+'px';
-  ring.style.top=ry+'px';
-  requestAnimationFrame(animRing);
-}
-animRing();
-
-document.querySelectorAll('a,button,.proj-card,.skill-card,.cert-card,.kpi-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{
-    cur.style.width='16px';
-    cur.style.height='16px';
-    ring.style.width='50px';
-    ring.style.height='50px';
-  });
-  el.addEventListener('mouseleave',()=>{
-    cur.style.width='10px';
-    cur.style.height='10px';
-    ring.style.width='36px';
-    ring.style.height='36px';
-  });
-});
-
 // MOBILE NAV
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -73,6 +30,52 @@ if (navToggle && navLinks) {
     }
   });
 }
+
+// PROJECT DETAILS MODAL
+const projectModal = document.getElementById('project-modal');
+const projectModalContent = document.getElementById('project-modal-content');
+const projectCards = document.querySelectorAll('.proj-card');
+
+function closeProjectModal() {
+  projectModal.classList.remove('is-open');
+  projectModal.setAttribute('aria-hidden', 'true');
+  projectModalContent.innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+projectCards.forEach(card => {
+  card.setAttribute('role', 'button');
+  card.setAttribute('tabindex', '0');
+  card.addEventListener('click', event => {
+    if (event.target.closest('a')) return;
+    projectModalContent.innerHTML = '';
+    const expandedCard = card.cloneNode(true);
+    expandedCard.classList.remove('aos', 'in', 'visible');
+    expandedCard.removeAttribute('role');
+    expandedCard.removeAttribute('tabindex');
+    projectModalContent.appendChild(expandedCard);
+    projectModal.classList.add('is-open');
+    projectModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+
+  card.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      card.click();
+    }
+  });
+});
+
+projectModal.querySelectorAll('[data-project-close]').forEach(control => {
+  control.addEventListener('click', closeProjectModal);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && projectModal.classList.contains('is-open')) {
+    closeProjectModal();
+  }
+});
 
 // DARK MODE
 const dm = document.getElementById('dm-toggle');
